@@ -9,6 +9,8 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Mm]emoryCaptures/
+
+# Custom Imported Packages
 /Assets/Mirror/
 /Assets/ParrelSync
 
