@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5de351810b7eb9f40ab62e8bcc06b471, type: 3}
   m_Name: BinarySpacePartitionParameters_test
   m_EditorClassIdentifier: 
-  minimumRoomHeight: 8
-  minimumRoomWidth: 8
-  dungeonHeight: 50
-  dungeonWidth: 50
+  minimumRoomHeight: 15
+  minimumRoomWidth: 15
+  dungeonHeight: 85
+  dungeonWidth: 85
   favoredSplitDirection: 2

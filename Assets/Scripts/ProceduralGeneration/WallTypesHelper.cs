@@ -101,7 +101,10 @@ public static class WallTypesHelper
         0b01000001,
         0b01011000,
         0b00011001,
-        0b01011100
+        0b01011100,
+        0b00001101,
+        0b00011101,
+        0b01001100
     };
 
     public static HashSet<int> wallTeeRight = new HashSet<int>
@@ -109,20 +112,31 @@ public static class WallTypesHelper
         0b01010000,
         0b01000111,
         0b01000011,
-        0b00010110
+        0b00010110,
+        0b00000010
     };
 
     public static HashSet<int> wallTeeDown = new HashSet<int>
     {
         0b00010100,
         0b10000101,
-        0b11010001
+        0b11010001,
+        0b11010101,
+        0b11000101,
+        0b10000100,
+        0b11010000,
+        0b11000100,
+        0b10010001
     };
 
     public static HashSet<int> wallTeeLeft = new HashSet<int>
     {
         0b00000101,
-        0b01110001
+        0b01110001,
+        0b00110100,
+        0b01110100,
+        0b00110001,
+        0b01100100
     };
 
     public static HashSet<int> wallCross = new HashSet<int>

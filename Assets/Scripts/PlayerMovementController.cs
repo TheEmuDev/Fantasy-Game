@@ -16,6 +16,7 @@ public class PlayerMovementController : NetworkBehaviour
 
     public override void OnStartAuthority()
     {
+        Debug.Log("OnStartAuthority " + this.gameObject.name);
         enabled = true;
 
         InputManager.Controls.Player.Move.performed += ctx => SetMovement(ctx.ReadValue<Vector2>());
@@ -33,7 +34,6 @@ public class PlayerMovementController : NetworkBehaviour
     private void ResetMovement() => previousInput = Vector2.zero;
 
     [Client]
-
     private void Move()
     {
         Vector2 up = rigidBody2D.transform.up;

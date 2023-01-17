@@ -21,23 +21,18 @@ public class CorridorFirstDungeonGenerator : SimpleRandomWalkMapGenerator
     [Header("Parameters")]
     [SerializeField] private int corridorLength = 14, corridorCount = 5;
     [SerializeField][Range(0.1f, 1)] private float roomPercent = 0.8f;
-    [SerializeField] private InputActionReference generate;
-
-    public UnityEvent OnFinishedRoomGeneration;
-
-    private Dungeon dungeon;
 
     protected override void RunProceduralGeneration()
     {
-        Generate();
+        GenerateDungeon();
     }
 
-    private void Generate()
+    private void GenerateDungeon()
     {
         dungeon.Reset();
 
-        HashSet<Vector2Int> floorPositions = new HashSet<Vector2Int>();
-        HashSet<Vector2Int> potentialRoomPositions = new HashSet<Vector2Int>();
+        HashSet<Vector2Int> floorPositions = new();
+        HashSet<Vector2Int> potentialRoomPositions = new();
 
         CreateCorridors(floorPositions, potentialRoomPositions);
         
@@ -51,10 +46,9 @@ public class CorridorFirstDungeonGenerator : SimpleRandomWalkMapGenerator
         }
 
         List<Vector2Int> deadEnds = FindDeadEnds(floorPositions);
-        CreateRoomsAtDeadEnds(deadEnds, dungeonRooms);
-
+        dungeon.Rooms.AddRange(CreateRoomsAtDeadEnds(deadEnds, dungeonRooms));
         tilemapVisualizer.PaintFloorTiles(dungeon);
-        WallGenerator.CreateWalls(floorPositions, tilemapVisualizer);
+        WallGenerator.CreateWalls(dungeon.GetDungeonFloorTiles(), tilemapVisualizer);
     }
 
     private List<Room> CreateRoomsAtDeadEnds(List<Vector2Int> deadEnds, List<Room> rooms)
@@ -83,7 +77,7 @@ public class CorridorFirstDungeonGenerator : SimpleRandomWalkMapGenerator
 
     private List<Vector2Int> FindDeadEnds(HashSet<Vector2Int> floorPositions)
     {
-        List<Vector2Int> deadEnds = new List<Vector2Int>();
+        List<Vector2Int> deadEnds = new();
         foreach(Vector2Int pos in floorPositions)
         {
             int neighborCount = 0;
@@ -100,8 +94,8 @@ public class CorridorFirstDungeonGenerator : SimpleRandomWalkMapGenerator
 
     private List<Room> CreateRooms(HashSet<Vector2Int> potentialRoomPositions)
     {
-        List<Room> dungeonRooms = new List<Room>();
-        HashSet<Vector2Int> roomPositions = new HashSet<Vector2Int>();
+        List<Room> dungeonRooms = new();
+        HashSet<Vector2Int> roomPositions = new();
         int roomToCreateCount = Mathf.RoundToInt(potentialRoomPositions.Count * roomPercent);
 
         List<Vector2Int> roomsToCreate = potentialRoomPositions.OrderBy(x => Guid.NewGuid()).Take(roomToCreateCount).ToList();
@@ -123,7 +117,7 @@ public class CorridorFirstDungeonGenerator : SimpleRandomWalkMapGenerator
         for (int i = 0; i < corridorCount; i++)
         {
             var corridor = ProceduralGenerationAlgorithms.RandomWalkCorridor(currentPosition, corridorLength);
-            currentPosition = corridor[corridor.Count - 1];
+            currentPosition = corridor[^1];
             potentialRoomPositions.Add(currentPosition);
             floorPositions.UnionWith(corridor);
         }

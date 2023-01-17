@@ -1,15 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 /// <summary>
 /// Stores all the data from generated dungeon
 /// </summary>
-public class Dungeon : MonoBehaviour
+public class Dungeon : NetworkBehaviour
 {
-    public List<Room> Rooms { get; set; } = new List<Room>();
-    public HashSet<Vector2Int> Path { get; set; } = new HashSet<Vector2Int>();
-    public List<GameObject> Players { get; set; } = new List<GameObject>();
+    public List<Room> Rooms { get; set; } = new();
+    public HashSet<Vector2Int> Path { get; set; } = new();
+    public List<GameObject> Players { get; set; } = new();
+
+    public HashSet<Vector2Int> GetDungeonFloorTiles()
+    {
+        HashSet<Vector2Int> dungeonFloor = new();
+        foreach (Room room in Rooms)
+        {
+            dungeonFloor.UnionWith(room.FloorTiles);
+        }
+
+        dungeonFloor.UnionWith(Path);
+        return dungeonFloor;
+    }
 
     public void Reset()
     {

@@ -20,25 +20,19 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkMapGenerator
     [SerializeField]
     private bool useRandomWalk = false;
 
-    [SerializeField] private InputActionReference generate;
-
-    public UnityEvent OnFinishedRoomGeneration;
-
-    private Dungeon dungeon;
-
     protected override void RunProceduralGeneration()
     {
-        Generate();
+        GenerateDungeon();
     }
 
-    private void Generate()
+    private void GenerateDungeon()
     {
         dungeon.Reset();
 
         var roomsList = ProceduralGenerationAlgorithms.BinarySpacePartitioning(new BoundsInt((Vector3Int)startPosition, new Vector3Int(binarySpacePartitionParameters.dungeonWidth, binarySpacePartitionParameters.dungeonHeight, 0)),
             binarySpacePartitionParameters.minimumRoomWidth, binarySpacePartitionParameters.minimumRoomHeight, (int)binarySpacePartitionParameters.favoredSplitDirection);
 
-        List<Room> rooms = new List<Room>();
+        List<Room> rooms = new();
 
         if(useRandomWalk)
         {
@@ -49,7 +43,9 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkMapGenerator
             rooms = CreateSimpleRooms(roomsList);
         }
 
-        List<Vector2Int> roomCenters = new List<Vector2Int>();
+        dungeon.Rooms.AddRange(rooms);
+
+        List<Vector2Int> roomCenters = new();
         foreach(var room in roomsList)
         {
             roomCenters.Add((Vector2Int)Vector3Int.RoundToInt(room.center));
@@ -58,14 +54,14 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkMapGenerator
         HashSet<Vector2Int> corridors = ConnectRooms(roomCenters);
         dungeon.Path.UnionWith(corridors);
 
-        tilemapVisualizer.PaintFloorTiles(floor);
-        WallGenerator.CreateWalls(floor, tilemapVisualizer);
+        tilemapVisualizer.PaintFloorTiles(dungeon);
+        WallGenerator.CreateWalls(dungeon.GetDungeonFloorTiles(), tilemapVisualizer);
     }
 
     private List<Room> CreateSWRooms(List<BoundsInt> roomsList)
     {
-        List<Room> swRooms = new List<Room>();
-        HashSet<Vector2Int> floor = new HashSet<Vector2Int>();
+        List<Room> swRooms = new();
+        HashSet<Vector2Int> floor = new();
 
         for (int i = 0; i < roomsList.Count; i++)
         {
@@ -91,7 +87,7 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkMapGenerator
 
     private HashSet<Vector2Int> ConnectRooms(List<Vector2Int> roomCenters)
     {
-        HashSet<Vector2Int> corridors = new HashSet<Vector2Int>();
+        HashSet<Vector2Int> corridors = new();
 
         var currentRoomCenter = roomCenters[Random.Range(0, roomCenters.Count)];
         roomCenters.Remove(currentRoomCenter);
@@ -109,7 +105,7 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkMapGenerator
 
     private HashSet<Vector2Int> CreateCorridor(Vector2Int currentRoomCenter, Vector2Int destination)
     {
-        HashSet<Vector2Int> corridor = new HashSet<Vector2Int>();
+        HashSet<Vector2Int> corridor = new();
         var position = currentRoomCenter;
         corridor.Add(position);
         while(position.y != destination.y)
@@ -157,19 +153,21 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkMapGenerator
 
     private List<Room> CreateSimpleRooms(List<BoundsInt> roomsList)
     {
-        List<Room> simpleRooms = new List<Room>();
-        HashSet<Vector2Int> floor = new HashSet<Vector2Int>();
+        List<Room> simpleRooms = new();
+        HashSet<Vector2Int> floor = new();
         foreach (var room in roomsList)
         {
-            for(int col = roomOffset; col < room.size.x - roomOffset; col++)
-            { 
+            for (int col = roomOffset; col < room.size.x - roomOffset; col++)
+            {
                 for (int row = roomOffset; row < room.size.y - roomOffset; row++)
                 {
                     Vector2Int position = (Vector2Int)room.min + new Vector2Int(col, row);
                     floor.Add(position);
                 }
             }
+
+            simpleRooms.Add(new Room(room.center, floor));
         }
-        return floor;
+        return simpleRooms;
     }
 }

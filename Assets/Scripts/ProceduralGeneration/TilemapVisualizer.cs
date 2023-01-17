@@ -13,9 +13,10 @@ public class TilemapVisualizer : MonoBehaviour
     private TileBase floorTile, wallHorizontalSingle, wallHorizontalLeft, wallHorizontalMiddle, wallHorizontalRight, wallVerticalTop, wallVerticalMiddle, wallVerticalBottom,
         wallCornerTopLeft, wallCornerTopRight, wallCornerBottomRight, wallCornerBottomLeft, wallTeeUp, wallTeeRight,wallTeeDown, wallTeeLeft, wallCross;
 
-    public void PaintFloorTiles(IEnumerable<Vector2Int> floorPositions)
+    public void PaintFloorTiles(Dungeon dungeon)
     {
-        PaintTiles(floorPositions, floorTilemap, floorTile);
+        HashSet<Vector2Int> dungeonFloor = dungeon.GetDungeonFloorTiles();
+        PaintTiles(dungeonFloor, floorTilemap, floorTile);
     }
     public void Clear()
     {

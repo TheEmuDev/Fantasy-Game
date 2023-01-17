@@ -828,7 +828,7 @@ TextureImporter:
       213: 5405844587758746828
     second: Atlas-Dungeon_274
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -849,6 +849,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -887,6 +888,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -948,6 +950,18 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -967,7 +981,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 7c1b8976037e79780800000000000000
-      internalID: -8676211962023464505
+      internalID: -6827340548183364500
       vertices: []
       indices: 
       edges: []
@@ -988,7 +1002,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 0ceff31d4a36f0dc0800000000000000
-      internalID: -3670605611747246400
+      internalID: -8676211962023464505
       vertices: []
       indices: 
       edges: []
@@ -6871,6 +6885,282 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      wood_stool: 3942065728380593039
+      brown_stone_floor_8: -8996505848649783824
+      brown_stone_floor_patch_tile_top: 5932935023703183563
+      dungeon_shackle_1: -6988406193002072587
+      brown_stone_wall_cross: 5347203067716020364
+      brown_stone_floor_patch_rocky_bottom: -5716466961192765321
+      grey_stone_pit_right: 6745522348233515255
+      brown_stone_wall_corner_top_left: 650480561139138046
+      brown_stone_wall_horizontal_left: 7092667825953380921
+      brown_stone_wall_horizontal_single: 2420725789181095870
+      grey_stone_floor_9: -3028088672763126744
+      brown_stone_pit_inner_corner_bottom_right: 7752372597498761453
+      brown_stone_wall_vertical_bottom: 4481426120295544558
+      grey_stone_wall_horizontal_left: -9055662155427325734
+      grey_stone_stairs_horizontal_down: 7409558198866935642
+      Atlas-Dungeon_273: 1450730160305317612
+      brown_boulder_wall_horizontal_left: -6855760447321774793
+      brown_cavern_floor_patch_2: 4972854586087051528
+      brown_stone_floor_patch_rocky_top: -5312008032981378564
+      Atlas-Dungeon_271: -6440381206881580215
+      wood_door_side: 6844632301514346123
+      wall_torch_2: 876242760518912981
+      brown_stone_pit_outer_corner_top_right: -119747401393874480
+      brown_stone_floor_patch_rocky_outer_corner_bottom_left: -8415667500326235985
+      wall_torch_out: 980162377066847566
+      Atlas-Dungeon_191: 1135230990864864365
+      brown_stone_pit_left: -8289738774848401890
+      grey_stone_wall_tee_up: -1902818066607765552
+      grey_stone_door_frame_left: -4903213198270651501
+      Atlas-Dungeon_188: 2308540349614842126
+      Atlas-Dungeon_189: -6542758558079213825
+      brown_stone_pillar_damaged: 1450825329339898792
+      weapon_rack_empty: -3245926459131677956
+      grey_stone_wall_corner_top_left: -7745574534307109334
+      grey_stone_floor_patch_rocky_right: -3491880744958471493
+      brown_stone_wall_vertical_middle: -1059060155259979440
+      grey_stone_pit_left: -3209020664398532850
+      brown_stone_floor_1: -8792973698256069562
+      brown_stone_pit_outer_corner_bottom_right: 7092540896669647382
+      grey_stone_floor_patch_rocky_left: 7699645931631429960
+      brown_stone_floor_patch_tile_bottom: -175453830468535142
+      weapon_rack_sword: -5338665698713252919
+      brown_cavern_floor_patch_7: -4109379968761095173
+      brown_stone_floor_patch_rocky_inner_variant_1: -1518884379976487473
+      brown_cavern_floor_patch_1: 850603242521174829
+      wall_torch_1: -4465104956685793595
+      brown_stone_floor_patch_rocky_left: 8980119187183455969
+      Atlas-Dungeon_190: -8717649153411914331
+      dungeon_throne: 6368489737167491677
+      grey_stone_floor_patch_tile_left: -9108798045157278981
+      brown_stone_stairs_horizontal_down: -9075833211677602830
+      brown_stone_2nd_floor_edge_middle: -2325826880425057518
+      grey_stone_floor_2: -8676211962023464505
+      brown_stone_floor_9: 1052923231259313785
+      brown_stone_wall_horizontal_middle_damaged_2: -5706563129258106512
+      brown_stone_pit_inner_corner_bottom_left: -590962642286765371
+      grey_stone_stairs_horizontal_up: 903273533896543101
+      brown_stone_wall_vertical_top: -7580954498603950062
+      Atlas-Dungeon_179: 862395277942695627
+      pillar_torch_out: 6824955062063898276
+      brown_cavern_floor_patch_5: 6534258874730477671
+      grey_stone_wall_vertical_middle_damaged_2: 6974275755136159935
+      brown_boulder_wall_tee_down: -5801343963194553802
+      dungeon_iron_gate_side: -1698971702478837126
+      brown_stone_pillar_torch_slot: -292898399335650543
+      Atlas-Dungeon_177: -4570685559821509526
+      brown_boulder_wall_cross: 8391069745113550469
+      grey_stone_floor_patch_tile_outer_corner_top_right: -5256974045625602390
+      grey_stone_wall_torch_slot_lit: 890846000303760388
+      grey_stone_floor_patch_tile_outer_corner_top_left: -4576520787364307311
+      grey_stone_floor_patch_rocky_inner_corner_top_right: 7940844418543470012
+      brown_boulder_wall_tee_right: -583286756552756909
+      Atlas-Dungeon_186: 7643597487143697681
+      brown_stone_rubble_large: -1048546073498164029
+      brown_stone_door_frame_left: -6978975485902651353
+      brown_stone_2nd_floor_edge_left: 3662686253674492149
+      grey_stone_stairs_vertical: -943754713955610331
+      grey_stone_floor_11: -8595303432113930795
+      grey_stone_2nd_floor_edge_right: -851074446227186229
+      brown_stone_floor_patch_rocky_inner: 1137805585436810817
+      grey_stone_wall_tee_right: -9095487196044179721
+      grey_stone_rubble_right: -1470321505172621770
+      spike_trap_3: 2765185483189498743
+      brown_stone_pit_outer_corner_top_left: 2941565293088586482
+      grey_stone_arch: 4633886031263070896
+      grey_stone_wall_corner_top_right: -35385307139939288
+      grey_stone_floor_patch_tile_bottom: 5582018567666861923
+      Atlas-Dungeon_269: -4091212425209160881
+      grey_stone_wall_horizontal_single: -2055880576519246138
+      shelf_2: -6660209079477211981
+      grey_stone_floor_patch_rocky_inner_variant_1: -8278427483338676848
+      brown_boulder_wall_horizontal_middle_variant_2: 5734980396899094407
+      wall_torch_4: 6727245549419756470
+      clay_vase_damaged: 5453665699275074183
+      grey_stone_floor_patch_rocky_outer_corner_bottom_left: -4220633596375904650
+      grey_stone_floor_patch_rocky_inner_variant_3: 3285518306055607625
+      brown_stone_pit_outer_corner_bottom_left: -280225572405906963
+      brown_boulder_wall_vertical_middle: 5606884417273754342
+      grey_stone_floor_patch_tile_outer_corner_bottom_left: -332829540640599104
+      grey_stone_pit_outer_corner_top_right: -1823897638055259013
+      grey_stone_floor_patch_rocky_inner_corner_bottom_left: 6687256982639158155
+      brown_stone_wall_corner_bottom_right: 2127398597065725507
+      Atlas-Dungeon_268: 4579612347529527965
+      shelf_1: 7697767633434422202
+      grey_stone_floor_3: -197034866925803827
+      grey_stone_floor_8: 8484466115360899025
+      brown_stone_floor_6: -4093229639449678568
+      brown_cavern_floor_patch_4: 3844108926529864531
+      Atlas-Dungeon_272: 9189379889501836361
+      weapon_rack_axe: -2075356568707720992
+      pillar_torch_4: -8278214087930915048
+      pillar_torch_2: 6391209388839084827
+      grey_stone_floor_patch_tile_inner_corner_top_left: 5221133045070289979
+      grey_stone_floor_patch_tile_inner_corner_top_right: 1499973140769626357
+      brown_stone_floor_patch_tile_inner_corner_top_right: 4616703132729414061
+      brown_stone_door_frame_right: 2406132690556111693
+      brown_boulder_wall_vertical_middle_variant_1: -4860488990771021534
+      brown_stone_wall_corner_bottom_left: 852790922405869564
+      large_wood_table: -5661376135965812433
+      clay_vase: -5708518938908090264
+      grey_stone_door_frame_right: 6635120577477788716
+      grey_stone_floor_10: 3032018373744821626
+      pillar_torch_1: 4267364740131384603
+      grey_stone_pillar: 111078207745105653
+      grey_stone_floor_patch_rocky_outer_corner_bottom_right: 3834338485537393112
+      grey_stone_floor_patch_tile_outer_corner_bottom_right: -8752589764157690137
+      grey_stone_pit_inner_corner_top_right: 7545996711049238893
+      brown_stone_floor_patch_tile_outer_corner_top_right: -6715654092693803345
+      brown_stone_floor_patch_rocky_right: -3603105154232196602
+      brown_stone_floor_patch_rocky_outer_corner_top_right: -6900825277735326868
+      grey_stone_wall_torch_slot_dark: 7878932752856675191
+      brown_stone_pit_top: -2856044782343335871
+      grey_stone_wall_vertical_middle: -6612001700414687875
+      brown_stone_floor_patch_rocky_outer_corner_bottom_right: -2946981704546607949
+      brown_boulder_wall_tee_up: -5175527868059491359
+      grey_stone_pit_outer_corner_bottom_left: 6427319628293946588
+      brown_boulder_wall_horizontal_right: -6491263000825999566
+      grey_stone_wall_vertical_middle_damaged_1: 7605973734793788918
+      brown_boulder_wall_vertical_middle_variant_2: -6004909702617243109
+      shelf_broken: 4040303711789468145
+      grey_stone_wall_horizontal_middle_damaged_2: -5711001347515875236
+      brown_stone_floor_patch_tile_inner: 7358312252488900120
+      brown_stone_rubble_left: 583614497770053565
+      Atlas-Dungeon_192: 5423897451640569457
+      grey_stone_2nd_floor_edge_left: -5320730392466041604
+      grey_stone_floor_1: -6827340548183364500
+      grey_stone_wall_corner_bottom_left: 920233580958336965
+      grey_stone_wall_cross: 4071146714272344731
+      Atlas-Dungeon_187: 4347578271692275054
+      grey_stone_pit_top: -1626197932479564073
+      lever_mid: 5085703814654531568
+      grey_stone_wall_tee_left: -2326635253259057849
+      wooden_crate_damaged: -5127136912231684260
+      brown_stone_pit_inner_corner_top_right: -458647618412098533
+      grey_stone_floor_patch_rocky_inner_corner_top_left: 8782378486513479286
+      chest_closed: -6507536481045970672
+      brown_stone_rubble_right: -7579734012283257264
+      lever_right: -836789882687456357
+      grey_stone_pit_outer_corner_top_left: 2596977980913053889
+      brown_stone_floor_patch_rocky_inner_corner_bottom_right: -7846200876048329314
+      brown_stone_floor_2: -5414931500257567804
+      wooden_crate: 78048832292671863
+      Atlas-Dungeon_274: 5405844587758746828
+      grey_stone_floor_12: -9208037678346103076
+      clay_vase_pair: -1005537435354571410
+      grey_stone_pillar_damaged: 3529426324963402705
+      dungeon_door_frame_clay: 6378175342738257854
+      grey_stone_pit_inner_corner_bottom_right: -863922299476950727
+      brown_boulder_wall_corner_top_left: 4287300848043557662
+      spike_trap_1: 4751705715983281404
+      dungeon_shackle_2: 3793472567629090870
+      brown_stone_floor_10: 3136357458717409814
+      grey_stone_wall_horizontal_right: -4376757480490935638
+      grey_stone_wall_vertical_top: 8122346050871747572
+      lever_left: 7630778977025248844
+      clay_pot_debris: 6441862474351151669
+      brown_boulder_wall_corner_bottom_right: -9047733181177522771
+      Atlas-Dungeon_178: 7152301327479943913
+      grey_stone_floor_patch_rocky_top: 6732692275936675977
+      grey_stone_floor_7: 3666449620011655861
+      grey_stone_floor_4: 3876306110513401838
+      grey_stone_wall_corner_bottom_right: -6962732282321391897
+      brown_stone_floor_patch_rocky_inner_variant_3: 342378533620766383
+      brown_stone_wall_tee_left: 1588214435045729746
+      grey_stone_rubble_left: 4236079039549595982
+      brown_stone_floor_5: -8848317612381886578
+      brown_stone_floor_patch_tile_outer_corner_bottom_right: -734759720334830366
+      brown_stone_pillar: -7595588300610903568
+      pillar_torch_3: -4930604157591822739
+      brown_stone_floor_patch_rocky_outer_corner_top_left: 456079490366623809
+      brown_cavern_floor_patch_6: -9034095849258687692
+      brown_stone_2nd_floor_edge_right: 2715766171189292691
+      brown_boulder_wall_horizontal_middle_variant_1: 458771178864807445
+      brown_stone_floor_patch_tile_inner_corner_bottom_left: 5690970124290267798
+      brown_boulder_wall_horizontal_single: 8847529744402113167
+      grey_stone_floor_patch_rocky_outer_corner_top_left: 775043590226807587
+      grey_stone_floor_patch_rocky_inner_variant_2: -6950986044123396076
+      brown_boulder_wall_corner_bottom_left: 667649552931850028
+      brown_stone_pit_right: 5764548259744956394
+      brown_stone_floor_3: 8386227758711228775
+      grey_stone_wall_horizontal_middle_damaged_1: 7388282801177752400
+      grey_stone_floor_patch_tile_inner: 1237460423360260261
+      wood_door_horizontal: 3238497470628814019
+      brown_stone_wall_tee_up: -881033059573463939
+      shelf_empty: 945740892442757628
+      brown_stone_floor_7: -681350205835615976
+      grey_stone_pit_inner_corner_bottom_left: 7144682852113941951
+      grey_stone_2nd_floor_edge_middle: -7776154190757548456
+      grey_stone_floor_patch_tile_top: 8009208895655281232
+      brown_stone_floor_patch_tile_inner_corner_top_left: 1534962904195995862
+      brown_stone_wall_horizontal_middle_damaged_1: 4386950575999026574
+      grey_stone_pillar_torch_slot: 5163808873801332399
+      brown_stone_wall_horizontal_middle: -8364923604896567245
+      brown_cavern_floor_patch_8: 3543267261187490677
+      brown_stone_floor_4: 3775021303360544768
+      Atlas-Dungeon_270: 5492787227414508885
+      grey_stone_rubble_single: 4437128589258076086
+      wall_torch_3: 1972450930727916938
+      brown_stone_floor_patch_tile_left: 1707268230449723841
+      grey_stone_wall_tee_down: 8986070016552132353
+      grey_stone_pit_bottom: -8363712246623802195
+      brown_stone_floor_patch_rocky_inner_corner_top_right: 7214356427306863786
+      grey_stone_wall_vertical_bottom: -753319183586309054
+      grey_stone_floor_5: 1533651970444774210
+      grey_stone_floor_patch_rocky_bottom: -3559326358198857205
+      brown_stone_floor_12: -7697214346872831959
+      brown_stone_wall_torch_slot_dark: 5803795325097524698
+      brown_boulder_wall_corner_top_right: 3858033078560631613
+      brown_stone_floor_patch_tile_right: -642557258007498488
+      brown_stone_pit_bottom: -1556196371896218144
+      iron_gate_horizontal: 4629746997870786522
+      brown_boulder_wall_horizontal_middle: -1928042415622968602
+      Atlas-Dungeon_185: -8043605436133892620
+      grey_stone_floor_patch_rocky_inner: 5930894371615023916
+      brown_cavern_floor_patch_3: -6002328854491249220
+      spike_trap_2: 6945201276148730803
+      brown_stone_pit_inner: -2035780792198655538
+      grey_stone_wall_horizontal_middle: -2351826279624044208
+      brown_stone_floor_patch_tile_outer_corner_top_left: -5396727201620889431
+      grey_stone_floor_patch_rocky_inner_corner_bottom_right: -7199247685507576872
+      grey_stone_rubble_large: -4655935880939531804
+      brown_stone_stairs_horizontal_up: -4669131250635265499
+      grey_stone_floor_patch_tile_inner_corner_bottom_left: 463265554392423521
+      brown_stone_floor_patch_rocky_inner_corner_top_left: -189633412302156867
+      brown_boulder_wall_vertical_bottom: 5963312195002752146
+      chest_open: 2340790481798914393
+      brown_stone_floor_patch_rocky_inner_corner_bottom_left: 3630162598920844111
+      brown_stone_wall_vertical_middle_damaged_1: 8761081247680863975
+      brown_stone_floor_patch_rocky_inner_variant_2: -4528946309207507757
+      brown_stone_floor_patch_tile_inner_corner_bottom_right: -361631693604781400
+      Atlas-Dungeon_180: 4362837094778255959
+      grey_stone_floor_patch_rocky_outer_corner_top_right: -7579087000862204492
+      brown_stone_wall_corner_top_right: -961892153864315595
+      grey_stone_floor_6: -4642037516206358896
+      brown_stone_floor_patch_rocky_inner_variant_4: 429771048673810606
+      brown_stone_wall_tee_down: -5054388451178468434
+      brown_stone_wall_vertical_middle_damaged_2: -3457889842900706231
+      grey_stone_floor_patch_tile_inner_corner_bottom_right: -700575708548259849
+      brown_stone_floor_patch_tile_outer_corner_bottom_left: 2709845816866210695
+      spike_trap_4: -5525922468335401721
+      brown_boulder_wall_tee_left: 5191823774065244337
+      grey_stone_floor_patch_rocky_inner_variant_4: 6762859709538296706
+      brown_stone_wall_torch_slot_lit: -5157471938000275849
+      brown_stone_floor_11: -610553061399368422
+      grey_stone_pit_inner: 8734226576856090
+      grey_stone_pit_inner_corner_top_left: -843958106563507809
+      brown_stone_pit_inner_corner_top_left: 981835969638376277
+      brown_stone_wall_horizontal_right: -4375521760405448184
+      grey_stone_pit_outer_corner_bottom_right: 7349400247087463456
+      brown_boulder_wall_vertical_top: -8479887123117649215
+      brown_stone_wall_tee_right: -6798958470227490917
+      brown_stone_stairs_vertical: 3626362028765721279
+      Atlas-Dungeon_267: 6137123656285285220
+      grey_stone_floor_patch_tile_right: -2267985382981626801
+      brown_stone_rubble_single: 4714121176296404490
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
