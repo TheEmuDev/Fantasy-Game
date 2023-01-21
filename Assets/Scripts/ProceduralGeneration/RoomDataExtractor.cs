@@ -25,46 +25,62 @@ public class RoomDataExtractor : MonoBehaviour
         foreach(Room room in dungeon.Rooms)
         {
             // find corner, near wall, and inner tiles
-            foreach(Vector2Int tilePosition in room.FloorTiles)
+            foreach (Vector2Int tilePosition in room.FloorTiles)
             {
-                int adjacentFloorTiles = 4;
+                string neighbors = "";
 
-                if(room.FloorTiles.Contains(tilePosition+Vector2Int.up) == false)
+                neighbors += room.FloorTiles.Contains(tilePosition + Vector2Int.up) ? "0" : "1";
+                neighbors += room.FloorTiles.Contains(tilePosition + Vector2Int.right) ? "0" : "1";
+                neighbors += room.FloorTiles.Contains(tilePosition + Vector2Int.down) ? "0" : "1";
+                neighbors += room.FloorTiles.Contains(tilePosition + Vector2Int.left) ? "0" : "1";
+
+                switch (neighbors)
                 {
-                    room.WallAdjacentTilesUp.Add(tilePosition);
-                    adjacentFloorTiles--;
+                    case "0000":
+                        room.InnerTiles.Add(tilePosition);
+                        break;
+
+                    case "1000":
+                        room.WallAdjacentTilesUp.Add(tilePosition);
+                        break;
+
+                    case "0100":
+                        room.WallAdjacentTilesRight.Add(tilePosition);
+                        break;
+
+                    case "0010":
+                        room.WallAdjacentTilesDown.Add(tilePosition);
+                        break;
+
+                    case "0001":
+                        room.WallAdjacentTilesLeft.Add(tilePosition);
+                        break;
+
+                    case "1110":
+                    case "1101":
+                    case "1011":
+                    case "0111":
+                        room.DeadEndTiles.Add(tilePosition);
+                        break;
+
+                    case "1100":
+                    case "0110":
+                    case "0011":
+                    case "1001":
+                        room.CornerTiles.Add(tilePosition);
+                        break;
+
+                    case "1010":
+                    case "0101":
+                        room.CorridorTiles.Add(tilePosition);
+                        break;
+
+                    default:
+                        Debug.LogWarning("Unreachable Tiles Detected!");
+                        Debug.Log(tilePosition);
+                        break;
                 }
-
-                if(room.FloorTiles.Contains(tilePosition+Vector2Int.down) == false)
-                {
-                    room.WallAdjacentTilesDown.Add(tilePosition);
-                    adjacentFloorTiles--;
-                }
-
-                if(room.FloorTiles.Contains(tilePosition+Vector2Int.left) == false)
-                {
-                    room.WallAdjacentTilesLeft.Add(tilePosition);
-                    adjacentFloorTiles--;
-                }
-
-                if(room.FloorTiles.Contains(tilePosition+Vector2Int.right) == false)
-                {
-                    room.WallAdjacentTilesRight.Add(tilePosition);
-                    adjacentFloorTiles--;
-                }
-
-                // find corners
-                if (adjacentFloorTiles <= 2)
-                    room.CornerTiles.Add(tilePosition);
-
-                if (adjacentFloorTiles == 4)
-                    room.InnerTiles.Add(tilePosition);
             }
-
-            room.WallAdjacentTilesUp.ExceptWith(room.CornerTiles);
-            room.WallAdjacentTilesDown.ExceptWith(room.CornerTiles);
-            room.WallAdjacentTilesLeft.ExceptWith(room.CornerTiles);
-            room.WallAdjacentTilesRight.ExceptWith(room.CornerTiles);
         }
 
         Invoke(nameof(RunEvent), 1);
@@ -104,6 +120,12 @@ public class RoomDataExtractor : MonoBehaviour
             // Draw corner tiles
             Gizmos.color = Color.magenta;
             DrawCubes(room.CornerTiles);
+
+            Gizmos.color = Color.black;
+            DrawCubes(room.DeadEndTiles);
+
+            Gizmos.color = Color.red;
+            DrawCubes(room.CorridorTiles);
         }
     }
 
@@ -117,3 +139,7 @@ public class RoomDataExtractor : MonoBehaviour
         }
     }
 }
+
+
+
+

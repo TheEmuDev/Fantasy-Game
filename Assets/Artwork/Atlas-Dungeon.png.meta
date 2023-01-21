@@ -4818,7 +4818,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atlas-Dungeon_177
+      name: grey_tile_floor_light_1
       rect:
         serializedVersion: 2
         x: 192
@@ -4839,7 +4839,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atlas-Dungeon_178
+      name: grey_tile_floor_dark_2
       rect:
         serializedVersion: 2
         x: 192
@@ -4860,7 +4860,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atlas-Dungeon_179
+      name: grey_tile_floor_dark_1
       rect:
         serializedVersion: 2
         x: 208
@@ -4881,7 +4881,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atlas-Dungeon_180
+      name: grey_tile_floor_light_2
       rect:
         serializedVersion: 2
         x: 208
@@ -4986,7 +4986,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atlas-Dungeon_185
+      name: red_tile_floor_light_1
       rect:
         serializedVersion: 2
         x: 224
@@ -5007,7 +5007,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atlas-Dungeon_186
+      name: red_tile_floor_dark_2
       rect:
         serializedVersion: 2
         x: 224
@@ -5028,7 +5028,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atlas-Dungeon_187
+      name: red_tile_floor_dark_1
       rect:
         serializedVersion: 2
         x: 240
@@ -5049,7 +5049,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atlas-Dungeon_188
+      name: red_tile_floor_light_2
       rect:
         serializedVersion: 2
         x: 240
@@ -5070,7 +5070,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atlas-Dungeon_189
+      name: brown_tile_floor_light_1
       rect:
         serializedVersion: 2
         x: 256
@@ -5091,7 +5091,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atlas-Dungeon_190
+      name: brown_tile_floor_dark_2
       rect:
         serializedVersion: 2
         x: 256
@@ -5112,7 +5112,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atlas-Dungeon_191
+      name: brown_tile_floor_light_2
       rect:
         serializedVersion: 2
         x: 272
@@ -5133,7 +5133,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atlas-Dungeon_192
+      name: brown_tile_floor_dark_1
       rect:
         serializedVersion: 2
         x: 272
@@ -6708,7 +6708,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atlas-Dungeon_267
+      name: brown_boulder_wall_horizontal_middle_pit
       rect:
         serializedVersion: 2
         x: 144
@@ -6729,7 +6729,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atlas-Dungeon_268
+      name: brown_boulder_wall_horizontal_middle_variant_pit_1
       rect:
         serializedVersion: 2
         x: 176
@@ -6750,7 +6750,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atlas-Dungeon_269
+      name: brown_boulder_wall_corner_top_left_pit
       rect:
         serializedVersion: 2
         x: 128
@@ -6771,7 +6771,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atlas-Dungeon_270
+      name: brown_boulder_wall_corner_top_right_pit
       rect:
         serializedVersion: 2
         x: 144
@@ -6792,7 +6792,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atlas-Dungeon_271
+      name: brown_boulder_wall_corner_bottom_left_pit
       rect:
         serializedVersion: 2
         x: 128
@@ -6813,7 +6813,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atlas-Dungeon_272
+      name: brown_boulder_wall_corner_bottom_right_pit
       rect:
         serializedVersion: 2
         x: 144
@@ -6834,7 +6834,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atlas-Dungeon_273
+      name: brown_boulder_wall_tee_up_pit
       rect:
         serializedVersion: 2
         x: 160
@@ -6855,7 +6855,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atlas-Dungeon_274
+      name: brown_boulder_wall_horizontal_middle_variant_pit_2
       rect:
         serializedVersion: 2
         x: 176
@@ -6896,28 +6896,27 @@ TextureImporter:
       brown_stone_wall_corner_top_left: 650480561139138046
       brown_stone_wall_horizontal_left: 7092667825953380921
       brown_stone_wall_horizontal_single: 2420725789181095870
+      brown_tile_floor_dark_2: -8717649153411914331
       grey_stone_floor_9: -3028088672763126744
       brown_stone_pit_inner_corner_bottom_right: 7752372597498761453
       brown_stone_wall_vertical_bottom: 4481426120295544558
+      brown_boulder_wall_corner_top_left_pit: -4091212425209160881
       grey_stone_wall_horizontal_left: -9055662155427325734
       grey_stone_stairs_horizontal_down: 7409558198866935642
-      Atlas-Dungeon_273: 1450730160305317612
       brown_boulder_wall_horizontal_left: -6855760447321774793
       brown_cavern_floor_patch_2: 4972854586087051528
       brown_stone_floor_patch_rocky_top: -5312008032981378564
-      Atlas-Dungeon_271: -6440381206881580215
       wood_door_side: 6844632301514346123
+      grey_tile_floor_dark_2: 7152301327479943913
+      brown_stone_pillar_damaged: 1450825329339898792
       wall_torch_2: 876242760518912981
       brown_stone_pit_outer_corner_top_right: -119747401393874480
       brown_stone_floor_patch_rocky_outer_corner_bottom_left: -8415667500326235985
       wall_torch_out: 980162377066847566
-      Atlas-Dungeon_191: 1135230990864864365
       brown_stone_pit_left: -8289738774848401890
       grey_stone_wall_tee_up: -1902818066607765552
       grey_stone_door_frame_left: -4903213198270651501
-      Atlas-Dungeon_188: 2308540349614842126
-      Atlas-Dungeon_189: -6542758558079213825
-      brown_stone_pillar_damaged: 1450825329339898792
+      red_tile_floor_light_2: 2308540349614842126
       weapon_rack_empty: -3245926459131677956
       grey_stone_wall_corner_top_left: -7745574534307109334
       grey_stone_floor_patch_rocky_right: -3491880744958471493
@@ -6933,7 +6932,6 @@ TextureImporter:
       brown_cavern_floor_patch_1: 850603242521174829
       wall_torch_1: -4465104956685793595
       brown_stone_floor_patch_rocky_left: 8980119187183455969
-      Atlas-Dungeon_190: -8717649153411914331
       dungeon_throne: 6368489737167491677
       grey_stone_floor_patch_tile_left: -9108798045157278981
       brown_stone_stairs_horizontal_down: -9075833211677602830
@@ -6944,23 +6942,24 @@ TextureImporter:
       brown_stone_pit_inner_corner_bottom_left: -590962642286765371
       grey_stone_stairs_horizontal_up: 903273533896543101
       brown_stone_wall_vertical_top: -7580954498603950062
-      Atlas-Dungeon_179: 862395277942695627
+      brown_tile_floor_light_2: 1135230990864864365
       pillar_torch_out: 6824955062063898276
       brown_cavern_floor_patch_5: 6534258874730477671
+      brown_tile_floor_dark_1: 5423897451640569457
       grey_stone_wall_vertical_middle_damaged_2: 6974275755136159935
       brown_boulder_wall_tee_down: -5801343963194553802
       dungeon_iron_gate_side: -1698971702478837126
       brown_stone_pillar_torch_slot: -292898399335650543
-      Atlas-Dungeon_177: -4570685559821509526
       brown_boulder_wall_cross: 8391069745113550469
+      brown_boulder_wall_horizontal_middle_pit: 6137123656285285220
       grey_stone_floor_patch_tile_outer_corner_top_right: -5256974045625602390
       grey_stone_wall_torch_slot_lit: 890846000303760388
       grey_stone_floor_patch_tile_outer_corner_top_left: -4576520787364307311
       grey_stone_floor_patch_rocky_inner_corner_top_right: 7940844418543470012
       brown_boulder_wall_tee_right: -583286756552756909
-      Atlas-Dungeon_186: 7643597487143697681
       brown_stone_rubble_large: -1048546073498164029
       brown_stone_door_frame_left: -6978975485902651353
+      Atlas-Dungeon_0: 1631274275
       brown_stone_2nd_floor_edge_left: 3662686253674492149
       grey_stone_stairs_vertical: -943754713955610331
       grey_stone_floor_11: -8595303432113930795
@@ -6973,7 +6972,6 @@ TextureImporter:
       grey_stone_arch: 4633886031263070896
       grey_stone_wall_corner_top_right: -35385307139939288
       grey_stone_floor_patch_tile_bottom: 5582018567666861923
-      Atlas-Dungeon_269: -4091212425209160881
       grey_stone_wall_horizontal_single: -2055880576519246138
       shelf_2: -6660209079477211981
       grey_stone_floor_patch_rocky_inner_variant_1: -8278427483338676848
@@ -6982,19 +6980,19 @@ TextureImporter:
       clay_vase_damaged: 5453665699275074183
       grey_stone_floor_patch_rocky_outer_corner_bottom_left: -4220633596375904650
       grey_stone_floor_patch_rocky_inner_variant_3: 3285518306055607625
+      brown_boulder_wall_horizontal_middle_variant_pit_1: 4579612347529527965
+      red_tile_floor_dark_2: 7643597487143697681
       brown_stone_pit_outer_corner_bottom_left: -280225572405906963
       brown_boulder_wall_vertical_middle: 5606884417273754342
       grey_stone_floor_patch_tile_outer_corner_bottom_left: -332829540640599104
       grey_stone_pit_outer_corner_top_right: -1823897638055259013
       grey_stone_floor_patch_rocky_inner_corner_bottom_left: 6687256982639158155
       brown_stone_wall_corner_bottom_right: 2127398597065725507
-      Atlas-Dungeon_268: 4579612347529527965
       shelf_1: 7697767633434422202
       grey_stone_floor_3: -197034866925803827
       grey_stone_floor_8: 8484466115360899025
       brown_stone_floor_6: -4093229639449678568
       brown_cavern_floor_patch_4: 3844108926529864531
-      Atlas-Dungeon_272: 9189379889501836361
       weapon_rack_axe: -2075356568707720992
       pillar_torch_4: -8278214087930915048
       pillar_torch_2: 6391209388839084827
@@ -7027,18 +7025,19 @@ TextureImporter:
       brown_boulder_wall_vertical_middle_variant_2: -6004909702617243109
       shelf_broken: 4040303711789468145
       grey_stone_wall_horizontal_middle_damaged_2: -5711001347515875236
-      brown_stone_floor_patch_tile_inner: 7358312252488900120
       brown_stone_rubble_left: 583614497770053565
-      Atlas-Dungeon_192: 5423897451640569457
+      brown_stone_floor_patch_tile_inner: 7358312252488900120
+      brown_boulder_wall_corner_bottom_right_pit: 9189379889501836361
       grey_stone_2nd_floor_edge_left: -5320730392466041604
       grey_stone_floor_1: -6827340548183364500
       grey_stone_wall_corner_bottom_left: 920233580958336965
       grey_stone_wall_cross: 4071146714272344731
-      Atlas-Dungeon_187: 4347578271692275054
+      brown_tile_floor_light_1: -6542758558079213825
       grey_stone_pit_top: -1626197932479564073
       lever_mid: 5085703814654531568
       grey_stone_wall_tee_left: -2326635253259057849
       wooden_crate_damaged: -5127136912231684260
+      grey_tile_floor_light_1: -4570685559821509526
       brown_stone_pit_inner_corner_top_right: -458647618412098533
       grey_stone_floor_patch_rocky_inner_corner_top_left: 8782378486513479286
       chest_closed: -6507536481045970672
@@ -7048,7 +7047,6 @@ TextureImporter:
       brown_stone_floor_patch_rocky_inner_corner_bottom_right: -7846200876048329314
       brown_stone_floor_2: -5414931500257567804
       wooden_crate: 78048832292671863
-      Atlas-Dungeon_274: 5405844587758746828
       grey_stone_floor_12: -9208037678346103076
       clay_vase_pair: -1005537435354571410
       grey_stone_pillar_damaged: 3529426324963402705
@@ -7059,11 +7057,12 @@ TextureImporter:
       dungeon_shackle_2: 3793472567629090870
       brown_stone_floor_10: 3136357458717409814
       grey_stone_wall_horizontal_right: -4376757480490935638
-      grey_stone_wall_vertical_top: 8122346050871747572
       lever_left: 7630778977025248844
+      brown_boulder_wall_horizontal_middle_variant_1: 458771178864807445
       clay_pot_debris: 6441862474351151669
       brown_boulder_wall_corner_bottom_right: -9047733181177522771
-      Atlas-Dungeon_178: 7152301327479943913
+      red_tile_floor_dark_1: 4347578271692275054
+      grey_stone_wall_vertical_top: 8122346050871747572
       grey_stone_floor_patch_rocky_top: 6732692275936675977
       grey_stone_floor_7: 3666449620011655861
       grey_stone_floor_4: 3876306110513401838
@@ -7071,6 +7070,8 @@ TextureImporter:
       brown_stone_floor_patch_rocky_inner_variant_3: 342378533620766383
       brown_stone_wall_tee_left: 1588214435045729746
       grey_stone_rubble_left: 4236079039549595982
+      grey_tile_floor_light_2: 4362837094778255959
+      brown_boulder_wall_corner_bottom_left_pit: -6440381206881580215
       brown_stone_floor_5: -8848317612381886578
       brown_stone_floor_patch_tile_outer_corner_bottom_right: -734759720334830366
       brown_stone_pillar: -7595588300610903568
@@ -7078,7 +7079,6 @@ TextureImporter:
       brown_stone_floor_patch_rocky_outer_corner_top_left: 456079490366623809
       brown_cavern_floor_patch_6: -9034095849258687692
       brown_stone_2nd_floor_edge_right: 2715766171189292691
-      brown_boulder_wall_horizontal_middle_variant_1: 458771178864807445
       brown_stone_floor_patch_tile_inner_corner_bottom_left: 5690970124290267798
       brown_boulder_wall_horizontal_single: 8847529744402113167
       grey_stone_floor_patch_rocky_outer_corner_top_left: 775043590226807587
@@ -7100,14 +7100,15 @@ TextureImporter:
       grey_stone_pillar_torch_slot: 5163808873801332399
       brown_stone_wall_horizontal_middle: -8364923604896567245
       brown_cavern_floor_patch_8: 3543267261187490677
+      red_tile_floor_light_1: -8043605436133892620
       brown_stone_floor_4: 3775021303360544768
-      Atlas-Dungeon_270: 5492787227414508885
       grey_stone_rubble_single: 4437128589258076086
       wall_torch_3: 1972450930727916938
       brown_stone_floor_patch_tile_left: 1707268230449723841
       grey_stone_wall_tee_down: 8986070016552132353
       grey_stone_pit_bottom: -8363712246623802195
       brown_stone_floor_patch_rocky_inner_corner_top_right: 7214356427306863786
+      brown_boulder_wall_horizontal_middle_variant_pit_2: 5405844587758746828
       grey_stone_wall_vertical_bottom: -753319183586309054
       grey_stone_floor_5: 1533651970444774210
       grey_stone_floor_patch_rocky_bottom: -3559326358198857205
@@ -7117,8 +7118,8 @@ TextureImporter:
       brown_stone_floor_patch_tile_right: -642557258007498488
       brown_stone_pit_bottom: -1556196371896218144
       iron_gate_horizontal: 4629746997870786522
+      brown_boulder_wall_tee_up_pit: 1450730160305317612
       brown_boulder_wall_horizontal_middle: -1928042415622968602
-      Atlas-Dungeon_185: -8043605436133892620
       grey_stone_floor_patch_rocky_inner: 5930894371615023916
       brown_cavern_floor_patch_3: -6002328854491249220
       spike_trap_2: 6945201276148730803
@@ -7131,12 +7132,12 @@ TextureImporter:
       grey_stone_floor_patch_tile_inner_corner_bottom_left: 463265554392423521
       brown_stone_floor_patch_rocky_inner_corner_top_left: -189633412302156867
       brown_boulder_wall_vertical_bottom: 5963312195002752146
+      brown_boulder_wall_corner_top_right_pit: 5492787227414508885
       chest_open: 2340790481798914393
       brown_stone_floor_patch_rocky_inner_corner_bottom_left: 3630162598920844111
       brown_stone_wall_vertical_middle_damaged_1: 8761081247680863975
       brown_stone_floor_patch_rocky_inner_variant_2: -4528946309207507757
       brown_stone_floor_patch_tile_inner_corner_bottom_right: -361631693604781400
-      Atlas-Dungeon_180: 4362837094778255959
       grey_stone_floor_patch_rocky_outer_corner_top_right: -7579087000862204492
       brown_stone_wall_corner_top_right: -961892153864315595
       grey_stone_floor_6: -4642037516206358896
@@ -7149,6 +7150,7 @@ TextureImporter:
       brown_boulder_wall_tee_left: 5191823774065244337
       grey_stone_floor_patch_rocky_inner_variant_4: 6762859709538296706
       brown_stone_wall_torch_slot_lit: -5157471938000275849
+      grey_tile_floor_dark_1: 862395277942695627
       brown_stone_floor_11: -610553061399368422
       grey_stone_pit_inner: 8734226576856090
       grey_stone_pit_inner_corner_top_left: -843958106563507809
@@ -7158,7 +7160,6 @@ TextureImporter:
       brown_boulder_wall_vertical_top: -8479887123117649215
       brown_stone_wall_tee_right: -6798958470227490917
       brown_stone_stairs_vertical: 3626362028765721279
-      Atlas-Dungeon_267: 6137123656285285220
       grey_stone_floor_patch_tile_right: -2267985382981626801
       brown_stone_rubble_single: 4714121176296404490
   spritePackingTag: 

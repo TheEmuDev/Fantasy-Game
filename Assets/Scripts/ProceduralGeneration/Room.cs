@@ -14,6 +14,8 @@ public class Room
     public HashSet<Vector2Int> WallAdjacentTilesDown { get; set; } = new HashSet<Vector2Int>();
     public HashSet<Vector2Int> WallAdjacentTilesLeft { get; set; } = new HashSet<Vector2Int>();
     public HashSet<Vector2Int> WallAdjacentTilesRight { get; set; } = new HashSet<Vector2Int>();
+    public HashSet<Vector2Int> CorridorTiles { get; set; } = new HashSet<Vector2Int>();
+    public HashSet<Vector2Int> DeadEndTiles { get; set; } = new HashSet<Vector2Int>();
     public HashSet<Vector2Int> CornerTiles { get; set; } = new HashSet<Vector2Int>();
     public HashSet<Vector2Int> InnerTiles { get; set; } = new HashSet<Vector2Int>();
     public HashSet<Vector2Int> PropPositions { get; set; } = new HashSet<Vector2Int>();

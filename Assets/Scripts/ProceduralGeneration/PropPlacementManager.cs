@@ -75,7 +75,7 @@ public class PropPlacementManager : MonoBehaviour
     {
         // Remove path positions from the initial wall adjacent tiles to prevent placements which
         // block the player from progressing
-        HashSet<Vector2Int> tempPositions = new HashSet<Vector2Int>(availableTiles);
+        HashSet<Vector2Int> tempPositions = new(availableTiles);
         tempPositions.ExceptWith(dungeon.Path);
 
         // Attempt to place all the props
@@ -157,7 +157,7 @@ public class PropPlacementManager : MonoBehaviour
 
         // find available spaces around the center point
         // searchOffset is used to limit the distance between those points and the center point
-        List<Vector2Int> availableSpaces = new List<Vector2Int>();
+        List<Vector2Int> availableSpaces = new();
         for(int xOffset = -searchOffset; xOffset <= searchOffset; xOffset++)
         {
             for (int yOffset = -searchOffset; yOffset <= searchOffset; yOffset++)
@@ -206,7 +206,7 @@ public class PropPlacementManager : MonoBehaviour
         {
             collider.direction = CapsuleDirection2D.Horizontal;
         }
-        Vector2 size = new Vector2(prop.PropSize.x * 0.8f, prop.PropSize.y * 0.8f);
+        Vector2 size = new(prop.PropSize.x * 0.8f, prop.PropSize.y * 0.8f);
         collider.size = size;
 
         // adjust the position to the sprite
@@ -229,7 +229,7 @@ public class PropPlacementManager : MonoBehaviour
     /// <returns></returns>
     private List<Vector2Int> TryToFitProp(Prop prop, List<Vector2Int> availablePositions, Vector2Int startPosition, PlacementOriginCorner placement)
     {
-        List<Vector2Int> freePositions = new List<Vector2Int>();
+        List<Vector2Int> freePositions = new();
 
         if(placement == PlacementOriginCorner.BottomLeft)
         {
