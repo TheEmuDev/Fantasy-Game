@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5e6fedc2472449cead18ef23b5cb30d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Library:
+  - m_Name: Idle
+    m_Hash: 1008081451
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: pillar_torch_1
+      m_Hash: 141501433
+      m_Sprite: {fileID: 4267364740131384603, guid: 10ba2240f5edbad479d9e3428f4cccd9, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 4267364740131384603, guid: 10ba2240f5edbad479d9e3428f4cccd9, type: 3}
+    - m_Name: pillar_torch_2
+      m_Hash: 291926595
+      m_Sprite: {fileID: 6391209388839084827, guid: 10ba2240f5edbad479d9e3428f4cccd9, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 6391209388839084827, guid: 10ba2240f5edbad479d9e3428f4cccd9, type: 3}
+    - m_Name: pillar_torch_3
+      m_Hash: 643908309
+      m_Sprite: {fileID: -4930604157591822739, guid: 10ba2240f5edbad479d9e3428f4cccd9, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -4930604157591822739, guid: 10ba2240f5edbad479d9e3428f4cccd9, type: 3}
+    - m_Name: pillar_torch_4
+      m_Hash: 939906934
+      m_Sprite: {fileID: -8278214087930915048, guid: 10ba2240f5edbad479d9e3428f4cccd9, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -8278214087930915048, guid: 10ba2240f5edbad479d9e3428f4cccd9, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 4
+  - m_Name: Extinguished
+    m_Hash: 825246145
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: pillar_torch_out
+      m_Hash: 96651834
+      m_Sprite: {fileID: 6824955062063898276, guid: 10ba2240f5edbad479d9e3428f4cccd9, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 6824955062063898276, guid: 10ba2240f5edbad479d9e3428f4cccd9, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 1
+  m_PrimaryLibraryGUID: 

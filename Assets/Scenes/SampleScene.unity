@@ -209,8 +209,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  randomWalkParameters: {fileID: 11400000, guid: d5c952bc201df1f4e95497d5c6137a59, type: 2}
-  binarySpacePartitionParameters: {fileID: 11400000, guid: e2ac2759ffdc03f438e8633b0ceb8a4e, type: 2}
+  randomWalkParameters: {fileID: 11400000, guid: 1d7f9f2f892be384d9c37c04de4155dc, type: 2}
+  binarySpacePartitionParameters: {fileID: 11400000, guid: 03d19a43671e4af4e8d368e7d2e8554d, type: 2}
   roomOffset: 2
   useRandomWalk: 0
 --- !u!114 &54380528
@@ -321,8 +321,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   props:
-  - {fileID: 11400000, guid: f124acafa3acf6943bc28a55a4cd11f6, type: 2}
-  cornerPropPlacementRate: 0.7
+  - {fileID: 11400000, guid: bbb5af89c6f8573478ea55a5cd9d2a7c, type: 2}
+  - {fileID: 11400000, guid: 437a94d40fa52d745b3d36e9f15c8a57, type: 2}
+  cornerPropPlacementRate: 0.307
   propPrefab: {fileID: 8424337533238336261, guid: 256ffc586e66de54eab067b214bfbbd9, type: 3}
   OnFinished:
     m_PersistentCalls:

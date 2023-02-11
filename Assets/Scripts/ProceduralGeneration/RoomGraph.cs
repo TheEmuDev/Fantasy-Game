@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class RoomGraph 
 {
-    Dictionary<Vector2Int, List<Vector2Int>> graph = new Dictionary<Vector2Int, List<Vector2Int>>();
+    Dictionary<Vector2Int, List<Vector2Int>> graph = new();
 
     public RoomGraph(HashSet<Vector2Int> roomFloor)
     {
         foreach(Vector2Int pos in roomFloor)
         {
-            List<Vector2Int> adjacentTiles = new List<Vector2Int>();
+            List<Vector2Int> adjacentTiles = new();
             foreach(Vector2Int direction in Direction2D.cardinalDirectionsList)
             {
                 Vector2Int newPos = pos + direction;
@@ -31,15 +31,15 @@ public class RoomGraph
     /// <returns></returns>
     public Dictionary<Vector2Int, Vector2Int> RunBFS(Vector2Int startPos, HashSet<Vector2Int> occupiedNodes)
     {
-        Queue<Vector2Int> nodesToVisit = new Queue<Vector2Int>();
+        Queue<Vector2Int> nodesToVisit = new();
         nodesToVisit.Enqueue(startPos);
 
-        HashSet<Vector2Int> visitedNodes = new HashSet<Vector2Int>
+        HashSet<Vector2Int> visitedNodes = new()
         {
             startPos
         };
 
-        Dictionary<Vector2Int, Vector2Int> map = new Dictionary<Vector2Int, Vector2Int>
+        Dictionary<Vector2Int, Vector2Int> map = new()
         {
             { startPos, startPos }
         };

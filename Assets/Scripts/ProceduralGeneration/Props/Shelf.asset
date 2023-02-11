@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 18e2475d9ec221b4b8d9de322da2733f, type: 3}
-  m_Name: Pot
+  m_Name: Shelf
   m_EditorClassIdentifier: 
-  PropSprite: {fileID: -5708518938908090264, guid: 10ba2240f5edbad479d9e3428f4cccd9, type: 3}
-  propSprites: {fileID: 7108339969198208228, guid: 707697600d94b324ab0f143115fbda91, type: 3}
+  PropSprite: {fileID: 7697767633434422202, guid: 10ba2240f5edbad479d9e3428f4cccd9, type: 3}
+  propSprites: {fileID: 0}
   spriteResolver: {fileID: 0}
-  PropSize: {x: 1, y: 1}
+  PropSize: {x: 2, y: 1}
   Inner: 1
-  Corner: 1
-  Corridor: 1
-  DeadEnd: 1
+  Corner: 0
+  Corridor: 0
+  DeadEnd: 0
   WallAdjacentUp: 1
-  WallAdjacentDown: 1
-  WallAdjacentLeft: 1
-  WallAdjacentRight: 1
-  QuantityMinimum: 0
-  QuantityMaximum: 5
+  WallAdjacentDown: 0
+  WallAdjacentLeft: 0
+  WallAdjacentRight: 0
+  QuantityMinimum: 1
+  QuantityMaximum: 3
   PlaceAsGroup: 0
-  GroupMinCount: 3
-  GroupMaxCount: 4
+  GroupMinCount: 1
+  GroupMaxCount: 1
