@@ -323,7 +323,8 @@ MonoBehaviour:
   props:
   - {fileID: 11400000, guid: bbb5af89c6f8573478ea55a5cd9d2a7c, type: 2}
   - {fileID: 11400000, guid: 437a94d40fa52d745b3d36e9f15c8a57, type: 2}
-  cornerPropPlacementRate: 0.307
+  - {fileID: 11400000, guid: c81dfdb56678e5f4ba3a8d510612ace1, type: 2}
+  cornerPropPlacementRate: 0.01
   propPrefab: {fileID: 8424337533238336261, guid: 256ffc586e66de54eab067b214bfbbd9, type: 3}
   OnFinished:
     m_PersistentCalls:

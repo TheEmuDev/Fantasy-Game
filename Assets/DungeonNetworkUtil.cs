@@ -9,12 +9,9 @@ public class DungeonNetworkUtil : NetworkBehaviour
     {
         if(conn.identity == null)
         {
-            Debug.Log("Smiley Day");
             NetworkServer.Spawn(Instantiate(newPlayerObject, spawnLocation, Quaternion.identity), conn);
             return;
         }
-
-        Debug.Log("Frowney Day");
 
         // Cache a reference to the current player object1
         GameObject oldPlayer = conn.identity.gameObject;

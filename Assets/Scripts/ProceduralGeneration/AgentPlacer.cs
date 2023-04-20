@@ -40,7 +40,7 @@ public class AgentPlacer : NetworkBehaviour
             Dictionary<Vector2Int, Vector2Int> roomMap = roomGraph.RunBFS(roomFloor.FirstOrDefault(), room.PropPositions);
 
             // Positions that are reachable + path == positions where enemies can be placed
-            room.PathAdjacentTiles = roomMap.Keys.OrderBy(x => Guid.NewGuid()).ToList();
+            //room.PathAdjacentTiles = roomMap.Keys.OrderBy(x => Guid.NewGuid()).ToList();
 
             if(roomEnemiesCount.Count > i)
             {

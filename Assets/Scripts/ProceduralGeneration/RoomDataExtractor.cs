@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,6 +28,20 @@ public class RoomDataExtractor : MonoBehaviour
             // find corner, near wall, and inner tiles
             foreach (Vector2Int tilePosition in room.FloorTiles)
             {
+                // handle tiles which are on the dungeon path
+                if (dungeon.Path.Contains(tilePosition)) 
+                {
+                    foreach (Vector2Int direction in Direction2D.cardinalDirectionsList)
+                    {
+                        if (room.FloorTiles.Contains(tilePosition + direction) && !dungeon.Path.Contains(tilePosition + direction))
+                        {
+                            room.PathAdjacentTiles.Add(tilePosition + direction);
+                        }
+                    }
+
+                    continue; 
+                }
+
                 string neighbors = "";
 
                 neighbors += room.FloorTiles.Contains(tilePosition + Vector2Int.up) ? "0" : "1";
@@ -76,8 +91,7 @@ public class RoomDataExtractor : MonoBehaviour
                         break;
 
                     default:
-                        Debug.LogWarning("Unreachable Tiles Detected!");
-                        Debug.Log(tilePosition);
+                        Debug.LogWarning("Unreachable Tiles Detected at " + tilePosition);
                         break;
                 }
             }
@@ -121,11 +135,16 @@ public class RoomDataExtractor : MonoBehaviour
             Gizmos.color = Color.magenta;
             DrawCubes(room.CornerTiles);
 
+            // Draw tiles with 3 adjacent walls
             Gizmos.color = Color.black;
             DrawCubes(room.DeadEndTiles);
 
+            // Draw Tiles with 2 parallel adjacent walls
             Gizmos.color = Color.red;
             DrawCubes(room.CorridorTiles);
+
+            Gizmos.color = new Color(255f, 150f, 0f, 1f); // dark orange
+            DrawWireCubes(room.PathAdjacentTiles);
         }
     }
 
@@ -138,8 +157,12 @@ public class RoomDataExtractor : MonoBehaviour
             Gizmos.DrawCube(floorPosition + Vector2.one * 0.5f, Vector2.one);
         }
     }
+
+    private void DrawWireCubes(IEnumerable<Vector2Int> collection)
+    {
+        foreach (Vector2Int floorPosition in collection)
+        {
+            Gizmos.DrawWireCube(floorPosition + (Vector2.one * 0.5f), Vector2.one);
+        }
+    }
 }
-
-
-
-
