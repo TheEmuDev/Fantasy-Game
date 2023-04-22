@@ -1190,7 +1190,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      player_hit_up_3: 3256022776280646234
+      player_attack_down_2: 2170138489600300705
       player_moving_side_2: -6920729218760333183
       player_idle_down: 7469398298989884440
       player_attack_up_3: -3818651247048531966
@@ -1224,13 +1224,13 @@ TextureImporter:
       player_selected_2: -8789635293071167822
       player_hit_side_3: -7024416766978308015
       player_moving_up_3: -7239167535408447270
+      player_hit_up_3: 3256022776280646234
       player_attack_side_2: 564836884487457459
       player_hit_side_2: -1077872996965071953
-      player_hit_up_1: -1122132596094932409
       player_hit_down_2: -1551302644400243822
+      player_hit_up_1: -1122132596094932409
       player_hit_up_2: -1219688141274047656
       player_moving_down_2: 2118309143023098942
-      player_attack_down_2: 2170138489600300705
       player_attack_side_3: 8048760154642369999
   spritePackingTag: 
   pSDRemoveMatte: 0
