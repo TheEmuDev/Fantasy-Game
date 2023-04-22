@@ -138,8 +138,8 @@ GameObject:
   - component: {fileID: 54380527}
   - component: {fileID: 54380526}
   - component: {fileID: 54380530}
-  - component: {fileID: 54380532}
   - component: {fileID: 54380531}
+  - component: {fileID: 54380532}
   - component: {fileID: 54380534}
   m_Layer: 0
   m_Name: DungeonManager
@@ -209,10 +209,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  randomWalkParameters: {fileID: 11400000, guid: d5c952bc201df1f4e95497d5c6137a59, type: 2}
-  binarySpacePartitionParameters: {fileID: 11400000, guid: e2ac2759ffdc03f438e8633b0ceb8a4e, type: 2}
+  randomWalkParameters: {fileID: 11400000, guid: 1d7f9f2f892be384d9c37c04de4155dc, type: 2}
+  binarySpacePartitionParameters: {fileID: 11400000, guid: 03d19a43671e4af4e8d368e7d2e8554d, type: 2}
   roomOffset: 2
-  useRandomWalk: 1
+  useRandomWalk: 0
 --- !u!114 &54380528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -296,9 +296,9 @@ MonoBehaviour:
   OnFinishedRoomProcessing:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 54380532}
-        m_TargetAssemblyTypeName: AgentPlacer, Assembly-CSharp
-        m_MethodName: PlaceAgents
+      - m_Target: {fileID: 54380531}
+        m_TargetAssemblyTypeName: PropPlacementManager, Assembly-CSharp
+        m_MethodName: ProcessRooms
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -320,12 +320,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e007e82eecb3eb6448322c1026a3a009, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  props: []
-  cornerPropPlacementRate: 0.7
-  propPrefab: {fileID: 0}
+  props:
+  - {fileID: 11400000, guid: bbb5af89c6f8573478ea55a5cd9d2a7c, type: 2}
+  - {fileID: 11400000, guid: 437a94d40fa52d745b3d36e9f15c8a57, type: 2}
+  - {fileID: 11400000, guid: c81dfdb56678e5f4ba3a8d510612ace1, type: 2}
+  cornerPropPlacementRate: 0.01
+  propPrefab: {fileID: 8424337533238336261, guid: 256ffc586e66de54eab067b214bfbbd9, type: 3}
   OnFinished:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 54380532}
+        m_TargetAssemblyTypeName: AgentPlacer, Assembly-CSharp
+        m_MethodName: PlaceAgents
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &54380532
 MonoBehaviour:
   m_ObjectHideFlags: 0

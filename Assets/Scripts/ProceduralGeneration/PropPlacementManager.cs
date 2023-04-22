@@ -75,14 +75,14 @@ public class PropPlacementManager : MonoBehaviour
     {
         // Remove path positions from the initial wall adjacent tiles to prevent placements which
         // block the player from progressing
-        HashSet<Vector2Int> tempPositions = new HashSet<Vector2Int>(availableTiles);
+        HashSet<Vector2Int> tempPositions = new(availableTiles);
         tempPositions.ExceptWith(dungeon.Path);
 
         // Attempt to place all the props
         foreach (Prop prop in props)
         {
             // quantity control
-            int quantity = UnityEngine.Random.Range(prop.QuantityMinimum, prop.QuantityMaximum+1);
+            int quantity = UnityEngine.Random.Range(prop.QuantityMinimum, prop.QuantityMaximum+1); // TODO: Implement quantity maximum so that it covers all placement types
 
             for (int i = 0; i < quantity; i++)
             {
@@ -111,30 +111,37 @@ public class PropPlacementManager : MonoBehaviour
         {
             // select the specified position
             Vector2Int position = availablePositions[i];
-            if (room.PropPositions.Contains(position))
-                continue;
+            //if (room.PropPositions.Contains(position))
+            //{
+            //    Debug.Log("Prop already exists at " + position);
+            //   continue;
+            //}
+                
 
             // check if there is enough space around to fit the prop
-            List<Vector2Int> freePositionsAround = TryToFitProp(prop, availablePositions, position, placement);
+            List<Vector2Int> freePositionsAround = TryToFitProp(room, prop, availablePositions, position, placement);
 
             // if there is enough space around to fit the prop
             if (freePositionsAround.Count == prop.PropSize.x * prop.PropSize.y)
             {
                 // Place the gameObject
-                PlacePropAt(room, position, prop);
+                GameObject propObject = PlacePropAt(room, position, prop);
 
-                // Lock all the positoins required by the prop (based on its size)
-                foreach (Vector2Int pos in freePositionsAround)
+                if(propObject != null)
                 {
-                    room.PropPositions.Add(pos);
-                }
+                    // Lock all the positions required by the prop (based on its size)
+                    foreach (Vector2Int pos in freePositionsAround)
+                    {
+                        room.PropPositions.Add(pos);
+                    }
 
-                // Deal with groups
-                if (prop.PlaceAsGroup)
-                {
-                    PlaceGroupObject(room, position, prop, 1);
+                    // Deal with groups
+                    if (prop.PlaceAsGroup)
+                    {
+                        PlaceGroupObject(room, position, prop, 1);
+                    }
+                    return true;
                 }
-                return true;
             }
         }
         return false;
@@ -157,7 +164,9 @@ public class PropPlacementManager : MonoBehaviour
 
         // find available spaces around the center point
         // searchOffset is used to limit the distance between those points and the center point
-        List<Vector2Int> availableSpaces = new List<Vector2Int>();
+        List<Vector2Int> availableSpaces = new();
+
+        // TODO: rework nested for loops to instead use Direction2D + searchOffset as multiplier
         for(int xOffset = -searchOffset; xOffset <= searchOffset; xOffset++)
         {
             for (int yOffset = -searchOffset; yOffset <= searchOffset; yOffset++)
@@ -173,13 +182,21 @@ public class PropPlacementManager : MonoBehaviour
         }
 
         // Shuffle the list
-        availableSpaces.OrderBy(x => Guid.NewGuid());
+        availableSpaces = availableSpaces.OrderBy(x => Guid.NewGuid()).ToList();
         
         // place props (or as many as space allows up to maximum)
         int tempCount = count < availableSpaces.Count ? count : availableSpaces.Count;
+
+        if (dungeon.Path.Overlaps(availableSpaces) || room.PropPositions.Overlaps(availableSpaces)) 
+        {
+            Debug.Log("availableSpaces malformed -- PlaceGroupObject");
+            return; 
+        }
+
         for (int i = 0; i < tempCount; i++)
         {
-            PlacePropAt(room, availableSpaces[i], prop);
+            GameObject propObject = PlacePropAt(room, availableSpaces[i], prop);
+
         }
     }
 
@@ -192,10 +209,11 @@ public class PropPlacementManager : MonoBehaviour
     /// <returns></returns>
     private GameObject PlacePropAt(Room room, Vector2Int placementPosition, Prop prop)
     {
+        if(room.PropPositions.Contains(placementPosition)) { return null; }
+
         // Instantiate the prop at this position
         GameObject propObject = Instantiate(propPrefab);
         SpriteRenderer propSpriteRenderer = propObject.GetComponentInChildren<SpriteRenderer>();
-
         // Set the sprite
         propSpriteRenderer.sprite = prop.PropSprite;
 
@@ -206,7 +224,7 @@ public class PropPlacementManager : MonoBehaviour
         {
             collider.direction = CapsuleDirection2D.Horizontal;
         }
-        Vector2 size = new Vector2(prop.PropSize.x * 0.8f, prop.PropSize.y * 0.8f);
+        Vector2 size = new(prop.PropSize.x * 0.8f, prop.PropSize.y * 0.8f);
         collider.size = size;
 
         // adjust the position to the sprite
@@ -227,9 +245,9 @@ public class PropPlacementManager : MonoBehaviour
     /// <param name="startPosition"></param>
     /// <param name="placement"></param>
     /// <returns></returns>
-    private List<Vector2Int> TryToFitProp(Prop prop, List<Vector2Int> availablePositions, Vector2Int startPosition, PlacementOriginCorner placement)
+    private List<Vector2Int> TryToFitProp(Room room, Prop prop, List<Vector2Int> availablePositions, Vector2Int startPosition, PlacementOriginCorner placement)
     {
-        List<Vector2Int> freePositions = new List<Vector2Int>();
+        List<Vector2Int> freePositions = new();
 
         if(placement == PlacementOriginCorner.BottomLeft)
         {
@@ -237,7 +255,7 @@ public class PropPlacementManager : MonoBehaviour
             {
                 for(int yOffset = 0; yOffset < prop.PropSize.y; yOffset++)
                 {
-                    CheckIfTileIsAvailable(freePositions, availablePositions, startPosition, xOffset, yOffset);
+                    CheckIfTileIsAvailable(room, freePositions, startPosition, xOffset, yOffset);
                 }
             }
         } else if (placement == PlacementOriginCorner.BottomRight)
@@ -246,7 +264,7 @@ public class PropPlacementManager : MonoBehaviour
             {
                 for (int yOffset = 0; yOffset < prop.PropSize.y; yOffset++)
                 {
-                    CheckIfTileIsAvailable(freePositions, availablePositions, startPosition, xOffset, yOffset);
+                    CheckIfTileIsAvailable(room, freePositions, startPosition, xOffset, yOffset);
                 }
             }
         } else if (placement == PlacementOriginCorner.TopLeft)
@@ -255,7 +273,7 @@ public class PropPlacementManager : MonoBehaviour
             {
                 for(int yOffset = -prop.PropSize.y + 1; yOffset <= 0; yOffset++)
                 {
-                    CheckIfTileIsAvailable(freePositions, availablePositions, startPosition, xOffset, yOffset);
+                    CheckIfTileIsAvailable(room, freePositions, startPosition, xOffset, yOffset);
                 }
             }    
         } else
@@ -264,7 +282,7 @@ public class PropPlacementManager : MonoBehaviour
             {
                 for(int yOffset = -prop.PropSize.y + 1; yOffset <= 0; yOffset++)
                 {
-                    CheckIfTileIsAvailable(freePositions, availablePositions, startPosition, xOffset, yOffset);
+                    CheckIfTileIsAvailable(room, freePositions, startPosition, xOffset, yOffset);
                 }
             }
         }
@@ -272,12 +290,17 @@ public class PropPlacementManager : MonoBehaviour
         return freePositions;
     }
 
-    private void CheckIfTileIsAvailable(List<Vector2Int> freePositions, List<Vector2Int> availablePositions, Vector2Int target, int xOffset, int yOffset)
+    private void CheckIfTileIsAvailable(Room room, List<Vector2Int> freePositions, Vector2Int target, int xOffset, int yOffset)
     {
         Vector2Int tempPos = target + new Vector2Int(xOffset, yOffset);
-        if (availablePositions.Contains(tempPos))
-            freePositions.Add(tempPos);
+
+        if (room.PropPositions.Contains(tempPos)) return;
+        if (dungeon.Path.Contains(tempPos)) return; 
+       
+        freePositions.Add(tempPos);
     }
+
+    // private bool IsPositionTaken(Room room, Vector2Int position) 
 
     private void PlaceCornerProps(Room room, List<Prop> cornerProps)
     {

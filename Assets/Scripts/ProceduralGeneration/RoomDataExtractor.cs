@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,46 +26,75 @@ public class RoomDataExtractor : MonoBehaviour
         foreach(Room room in dungeon.Rooms)
         {
             // find corner, near wall, and inner tiles
-            foreach(Vector2Int tilePosition in room.FloorTiles)
+            foreach (Vector2Int tilePosition in room.FloorTiles)
             {
-                int adjacentFloorTiles = 4;
-
-                if(room.FloorTiles.Contains(tilePosition+Vector2Int.up) == false)
+                // handle tiles which are on the dungeon path
+                if (dungeon.Path.Contains(tilePosition)) 
                 {
-                    room.WallAdjacentTilesUp.Add(tilePosition);
-                    adjacentFloorTiles--;
+                    foreach (Vector2Int direction in Direction2D.cardinalDirectionsList)
+                    {
+                        if (room.FloorTiles.Contains(tilePosition + direction) && !dungeon.Path.Contains(tilePosition + direction))
+                        {
+                            room.PathAdjacentTiles.Add(tilePosition + direction);
+                        }
+                    }
+
+                    continue; 
                 }
 
-                if(room.FloorTiles.Contains(tilePosition+Vector2Int.down) == false)
+                string neighbors = "";
+
+                neighbors += room.FloorTiles.Contains(tilePosition + Vector2Int.up) ? "0" : "1";
+                neighbors += room.FloorTiles.Contains(tilePosition + Vector2Int.right) ? "0" : "1";
+                neighbors += room.FloorTiles.Contains(tilePosition + Vector2Int.down) ? "0" : "1";
+                neighbors += room.FloorTiles.Contains(tilePosition + Vector2Int.left) ? "0" : "1";
+
+                switch (neighbors)
                 {
-                    room.WallAdjacentTilesDown.Add(tilePosition);
-                    adjacentFloorTiles--;
+                    case "0000":
+                        room.InnerTiles.Add(tilePosition);
+                        break;
+
+                    case "1000":
+                        room.WallAdjacentTilesUp.Add(tilePosition);
+                        break;
+
+                    case "0100":
+                        room.WallAdjacentTilesRight.Add(tilePosition);
+                        break;
+
+                    case "0010":
+                        room.WallAdjacentTilesDown.Add(tilePosition);
+                        break;
+
+                    case "0001":
+                        room.WallAdjacentTilesLeft.Add(tilePosition);
+                        break;
+
+                    case "1110":
+                    case "1101":
+                    case "1011":
+                    case "0111":
+                        room.DeadEndTiles.Add(tilePosition);
+                        break;
+
+                    case "1100":
+                    case "0110":
+                    case "0011":
+                    case "1001":
+                        room.CornerTiles.Add(tilePosition);
+                        break;
+
+                    case "1010":
+                    case "0101":
+                        room.CorridorTiles.Add(tilePosition);
+                        break;
+
+                    default:
+                        Debug.LogWarning("Unreachable Tiles Detected at " + tilePosition);
+                        break;
                 }
-
-                if(room.FloorTiles.Contains(tilePosition+Vector2Int.left) == false)
-                {
-                    room.WallAdjacentTilesLeft.Add(tilePosition);
-                    adjacentFloorTiles--;
-                }
-
-                if(room.FloorTiles.Contains(tilePosition+Vector2Int.right) == false)
-                {
-                    room.WallAdjacentTilesRight.Add(tilePosition);
-                    adjacentFloorTiles--;
-                }
-
-                // find corners
-                if (adjacentFloorTiles <= 2)
-                    room.CornerTiles.Add(tilePosition);
-
-                if (adjacentFloorTiles == 4)
-                    room.InnerTiles.Add(tilePosition);
             }
-
-            room.WallAdjacentTilesUp.ExceptWith(room.CornerTiles);
-            room.WallAdjacentTilesDown.ExceptWith(room.CornerTiles);
-            room.WallAdjacentTilesLeft.ExceptWith(room.CornerTiles);
-            room.WallAdjacentTilesRight.ExceptWith(room.CornerTiles);
         }
 
         Invoke(nameof(RunEvent), 1);
@@ -104,6 +134,17 @@ public class RoomDataExtractor : MonoBehaviour
             // Draw corner tiles
             Gizmos.color = Color.magenta;
             DrawCubes(room.CornerTiles);
+
+            // Draw tiles with 3 adjacent walls
+            Gizmos.color = Color.black;
+            DrawCubes(room.DeadEndTiles);
+
+            // Draw Tiles with 2 parallel adjacent walls
+            Gizmos.color = Color.red;
+            DrawCubes(room.CorridorTiles);
+
+            Gizmos.color = new Color(255f, 150f, 0f, 1f); // dark orange
+            DrawWireCubes(room.PathAdjacentTiles);
         }
     }
 
@@ -114,6 +155,14 @@ public class RoomDataExtractor : MonoBehaviour
             if (dungeon.Path.Contains(floorPosition)) continue;
 
             Gizmos.DrawCube(floorPosition + Vector2.one * 0.5f, Vector2.one);
+        }
+    }
+
+    private void DrawWireCubes(IEnumerable<Vector2Int> collection)
+    {
+        foreach (Vector2Int floorPosition in collection)
+        {
+            Gizmos.DrawWireCube(floorPosition + (Vector2.one * 0.5f), Vector2.one);
         }
     }
 }

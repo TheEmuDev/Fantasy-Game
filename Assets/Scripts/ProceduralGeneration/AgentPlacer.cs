@@ -37,10 +37,10 @@ public class AgentPlacer : NetworkBehaviour
             roomFloor.IntersectWith(dungeon.Path);
             
             // find all the tiles in the room accessible from the path
-            Dictionary<Vector2Int, Vector2Int> roomMap = roomGraph.RunBFS(roomFloor.First(), room.PropPositions);
+            Dictionary<Vector2Int, Vector2Int> roomMap = roomGraph.RunBFS(roomFloor.FirstOrDefault(), room.PropPositions);
 
             // Positions that are reachable + path == positions where enemies can be placed
-            room.PathAdjacentTiles = roomMap.Keys.OrderBy(x => Guid.NewGuid()).ToList();
+            //room.PathAdjacentTiles = roomMap.Keys.OrderBy(x => Guid.NewGuid()).ToList();
 
             if(roomEnemiesCount.Count > i)
             {
