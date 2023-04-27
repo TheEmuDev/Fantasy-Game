@@ -9,10 +9,12 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Mm]emoryCaptures/
+/[Uu]serSettings/
 
 # Custom Imported Packages
 /Assets/Mirror/
 /Assets/ParrelSync
+/Assets/TextMesh Pro
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
@@ -64,5 +66,4 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 *.dwlt
-UserSettings/Layouts/default-2021.dwlt
-UserSettings/EditorUserSettings.asset
+Assets/TextMesh Pro.meta
