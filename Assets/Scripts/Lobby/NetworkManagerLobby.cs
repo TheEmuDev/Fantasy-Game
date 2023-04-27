@@ -10,7 +10,7 @@ namespace FantasyRogueLite.Lobby
 {
     public class NetworkManagerLobby : NetworkManager
     {
-        [Scene][SerializeField] private string menuScene = string.Empty;
+        [SerializeField] private string menuScene = string.Empty;
 
         [Header("Room")]
         [SerializeField] private NetworkRoomPlayerLobby roomPlayerPrefab = null;
@@ -49,12 +49,14 @@ namespace FantasyRogueLite.Lobby
         {
             if(numPlayers >= maxConnections)
             {
+                Debug.Log("Number of players is equal or greater than max connections allowed");
                 conn.Disconnect();
                 return;
             }
 
-            if(SceneManager.GetActiveScene().name != menuScene)
-            {
+            if (SceneManager.GetActiveScene().name != menuScene) 
+            { 
+                Debug.Log("Active Sceen: " + SceneManager.GetActiveScene().name + " does not match " + menuScene);
                 // If we want to have drop in - drop out co-op. We will need to change this
                 conn.Disconnect();
                 return;
