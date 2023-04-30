@@ -15,12 +15,18 @@ namespace FantasyRogueLite.Lobby
         [SerializeField] private string menuScene = string.Empty;
 
         [Header("Room")]
-        [SerializeField] private NetworkRoomPlayerLobby roomPlayerPrefab = null;
+        [SerializeField] private NetworkLobbyPlayer roomPlayerPrefab = null;
+
+        [Header("Game")]
+        [SerializeField] private NetworkGamePlayer gamePlayerPrefab = null;
 
         public static event Action OnClientConnected;
         public static event Action OnClientDisconnected;
 
-        public List<NetworkRoomPlayerLobby> RoomPlayers { get; } = new List<NetworkRoomPlayerLobby>();
+        public List<NetworkLobbyPlayer> RoomPlayers { get; } = new List<NetworkLobbyPlayer>();
+        public List<NetworkGamePlayer> GamePlayers { get; } = new List<NetworkGamePlayer>();
+
+
         public override void OnStartServer() => spawnPrefabs = Resources.LoadAll<GameObject>("SpawnablePrefabs").ToList();
 
         public override void OnStartClient()
@@ -70,7 +76,7 @@ namespace FantasyRogueLite.Lobby
         { 
             if (conn.identity != null)
             {
-                var player = conn.identity.GetComponent<NetworkRoomPlayerLobby>();
+                var player = conn.identity.GetComponent<NetworkLobbyPlayer>();
 
                 RoomPlayers.Remove(player);
 
@@ -85,7 +91,7 @@ namespace FantasyRogueLite.Lobby
             {
                 bool isLeader = RoomPlayers.Count == 0;
 
-                NetworkRoomPlayerLobby roomPlayerInstance = Instantiate(roomPlayerPrefab);
+                NetworkLobbyPlayer roomPlayerInstance = Instantiate(roomPlayerPrefab);
                 
                 roomPlayerInstance.IsLeader = isLeader;
                 NetworkServer.AddPlayerForConnection(conn, roomPlayerInstance.gameObject);
@@ -104,6 +110,37 @@ namespace FantasyRogueLite.Lobby
             {
                 player.HandleReadyToStart(IsReadyToStart());
             }
+        }
+
+        public void StartGame()
+        {
+            if(SceneManager.GetActiveScene().name == menuScene)
+            {
+                if(!IsReadyToStart()) { return; }
+
+                ServerChangeScene("SampleScene");
+            }
+        }
+
+        public override void ServerChangeScene(string newScene)
+        {
+            // From Menu to Game
+            if (SceneManager.GetActiveScene().name == menuScene) {
+                if(newScene == "SampleScene")
+                {
+                    for (int i = RoomPlayers.Count - 1; i >= 0; i--)
+                    {
+                        var conn = RoomPlayers[i].connectionToClient;
+                        var gamePlayerInstance = Instantiate(gamePlayerPrefab);
+                        gamePlayerInstance.SetDisplayName(RoomPlayers[i].DisplayName);
+
+                        NetworkServer.Destroy(conn.identity.gameObject);
+                        NetworkServer.ReplacePlayerForConnection(conn, gamePlayerInstance.gameObject);
+                    }
+                }
+            }
+
+            base.ServerChangeScene(newScene);
         }
 
         private bool IsReadyToStart()

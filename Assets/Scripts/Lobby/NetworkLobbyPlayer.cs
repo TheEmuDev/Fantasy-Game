@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace FantasyRogueLite.Lobby
 {
-    public class NetworkRoomPlayerLobby : NetworkBehaviour
+    public class NetworkLobbyPlayer : NetworkBehaviour
     {
         [Header("UI")]
         [SerializeField] private GameObject lobbyUI = null;
@@ -116,10 +116,11 @@ namespace FantasyRogueLite.Lobby
         [Command]
         public void CmdStartGame()
         {
+            Debug.Log("CmdStartGame");
             if (Room.RoomPlayers[0].connectionToClient != connectionToClient) { return; }
 
             Debug.Log("START GAME");
-            //Room.StartGame();
+            Room.StartGame();
         } 
     }
 }

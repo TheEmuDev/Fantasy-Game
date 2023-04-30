@@ -2897,6 +2897,7 @@ MonoBehaviour:
   minimumPlayers: 1
   menuScene: MirrorSetup
   roomPlayerPrefab: {fileID: 5304133868508585283, guid: 2b4b8e99de9eb614e878fd653a48e636, type: 3}
+  gamePlayerPrefab: {fileID: -6504155128449959189, guid: 9125584d51b0dae48be1be3ea09632d4, type: 3}
 --- !u!1 &1643887599
 GameObject:
   m_ObjectHideFlags: 0
