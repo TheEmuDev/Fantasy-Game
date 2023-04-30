@@ -33,7 +33,7 @@ namespace FantasyRogueLite.Lobby
         {
             get 
             {
-                if (room == null) { return room; }
+                if (room != null) { return room; }
                 return room = NetworkManager.singleton as NetworkManagerLobby;
             }
         }
@@ -118,6 +118,7 @@ namespace FantasyRogueLite.Lobby
         {
             if (Room.RoomPlayers[0].connectionToClient != connectionToClient) { return; }
 
+            Debug.Log("START GAME");
             //Room.StartGame();
         } 
     }
