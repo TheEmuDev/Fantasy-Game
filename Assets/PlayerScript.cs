@@ -33,9 +33,9 @@ namespace QuickStart {
         }
 
         [Command]
-        public void CmdSendPlayerMessage () {
+        public void CmdSendPlayerMessage (string message) {
             if (sceneScript)
-                sceneScript.statusText = $"{playerName} says: Hello World!";
+                sceneScript.statusText = $"{playerName} says: {message}";
         }
 
         [Command]

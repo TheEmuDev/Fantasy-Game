@@ -6,6 +6,7 @@ using UnityEngine.UI;
 namespace QuickStart {
     public class ServerSceneManager : NetworkBehaviour {
         public TextMeshProUGUI canvasStatusText;
+        public TMP_InputField canvasInputField;
 
         public PlayerScript playerScript;
 
@@ -18,7 +19,7 @@ namespace QuickStart {
 
         public void ButtonSendMessage () {
             if (playerScript != null)
-                playerScript.CmdSendPlayerMessage ();
+                playerScript.CmdSendPlayerMessage (canvasInputField.text);
         }
     }
 }
