@@ -62,6 +62,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Press"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SpawnMonster"",
+                    ""type"": ""Button"",
+                    ""id"": ""73f3877f-f9ae-47da-af0d-44553e178bd5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -152,6 +161,17 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""GenerateCF"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b112d74f-7f96-486d-ae79-578e4c770979"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SpawnMonster"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -181,6 +201,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_Player_GenerateSRW = m_Player.FindAction("GenerateSRW", throwIfNotFound: true);
         m_Player_GenerateRF = m_Player.FindAction("GenerateRF", throwIfNotFound: true);
         m_Player_GenerateCF = m_Player.FindAction("GenerateCF", throwIfNotFound: true);
+        m_Player_SpawnMonster = m_Player.FindAction("SpawnMonster", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -244,6 +265,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_GenerateSRW;
     private readonly InputAction m_Player_GenerateRF;
     private readonly InputAction m_Player_GenerateCF;
+    private readonly InputAction m_Player_SpawnMonster;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -252,6 +274,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @GenerateSRW => m_Wrapper.m_Player_GenerateSRW;
         public InputAction @GenerateRF => m_Wrapper.m_Player_GenerateRF;
         public InputAction @GenerateCF => m_Wrapper.m_Player_GenerateCF;
+        public InputAction @SpawnMonster => m_Wrapper.m_Player_SpawnMonster;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -273,6 +296,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @GenerateCF.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGenerateCF;
                 @GenerateCF.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGenerateCF;
                 @GenerateCF.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGenerateCF;
+                @SpawnMonster.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpawnMonster;
+                @SpawnMonster.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpawnMonster;
+                @SpawnMonster.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpawnMonster;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -289,6 +315,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @GenerateCF.started += instance.OnGenerateCF;
                 @GenerateCF.performed += instance.OnGenerateCF;
                 @GenerateCF.canceled += instance.OnGenerateCF;
+                @SpawnMonster.started += instance.OnSpawnMonster;
+                @SpawnMonster.performed += instance.OnSpawnMonster;
+                @SpawnMonster.canceled += instance.OnSpawnMonster;
             }
         }
     }
@@ -308,5 +337,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnGenerateSRW(InputAction.CallbackContext context);
         void OnGenerateRF(InputAction.CallbackContext context);
         void OnGenerateCF(InputAction.CallbackContext context);
+        void OnSpawnMonster(InputAction.CallbackContext context);
     }
 }
