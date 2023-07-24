@@ -1,3 +1,4 @@
+using Mirror;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using UnityEngine.Events;
 
 public class PropPlacementManager : MonoBehaviour
 {
-    Dungeon dungeon;
+    /*Dungeon dungeon;
 
     [SerializeField] 
     private List<Prop> props;
@@ -29,7 +30,7 @@ public class PropPlacementManager : MonoBehaviour
     {
         if (dungeon == null) return;
 
-        foreach (Room room in dungeon.Rooms)
+        foreach (Room room in dungeon.GetRooms())
         {
             // Place props in the corners
             List<Prop> cornerProps = props.Where(x => x.Corner).ToList();
@@ -71,12 +72,12 @@ public class PropPlacementManager : MonoBehaviour
     /// <param name="props"></param>
     /// <param name="availableTiles"></param>
     /// <param name="placement"></param>
-    private void PlaceProps(Room room, List<Prop> props, HashSet<Vector2Int> availableTiles, PlacementOriginCorner placement)
+    private void PlaceProps(Room room, List<Prop> props, SyncHashSet<Vector2Int> availableTiles, PlacementOriginCorner placement)
     {
         // Remove path positions from the initial wall adjacent tiles to prevent placements which
         // block the player from progressing
         HashSet<Vector2Int> tempPositions = new(availableTiles);
-        tempPositions.ExceptWith(dungeon.Path);
+        tempPositions.ExceptWith(dungeon.GetPath());
 
         // Attempt to place all the props
         foreach (Prop prop in props)
@@ -173,7 +174,7 @@ public class PropPlacementManager : MonoBehaviour
             {
                 Vector2Int tempPos = groupStartPosition + new Vector2Int(xOffset, yOffset);
                 if(room.FloorTiles.Contains(tempPos) &&
-                    !dungeon.Path.Contains(tempPos) &&
+                    !dungeon.GetPath().Contains(tempPos) &&
                     !room.PropPositions.Contains(tempPos))
                 {
                     availableSpaces.Add(tempPos);
@@ -187,7 +188,7 @@ public class PropPlacementManager : MonoBehaviour
         // place props (or as many as space allows up to maximum)
         int tempCount = count < availableSpaces.Count ? count : availableSpaces.Count;
 
-        if (dungeon.Path.Overlaps(availableSpaces) || room.PropPositions.Overlaps(availableSpaces)) 
+        if (dungeon.GetPath().Overlaps(availableSpaces) || room.PropPositions.Overlaps(availableSpaces)) 
         {
             Debug.Log("availableSpaces malformed -- PlaceGroupObject");
             return; 
@@ -295,7 +296,7 @@ public class PropPlacementManager : MonoBehaviour
         Vector2Int tempPos = target + new Vector2Int(xOffset, yOffset);
 
         if (room.PropPositions.Contains(tempPos)) return;
-        if (dungeon.Path.Contains(tempPos)) return; 
+        if (dungeon.GetPath().Contains(tempPos)) return; 
        
         freePositions.Add(tempPos);
     }
@@ -324,6 +325,7 @@ public class PropPlacementManager : MonoBehaviour
 
         }
     }
+    */
 }
 
 /// <summary>

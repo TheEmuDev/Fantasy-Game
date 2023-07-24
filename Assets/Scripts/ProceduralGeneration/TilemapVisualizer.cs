@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using Random = UnityEngine.Random;
 
 public class TilemapVisualizer : MonoBehaviour
 {
@@ -15,17 +14,20 @@ public class TilemapVisualizer : MonoBehaviour
 
     public void PaintFloorTiles(Dungeon dungeon)
     {
-        HashSet<Vector2Int> dungeonFloor = dungeon.GetDungeonFloorTiles();
+        Debug.Log("TilemapVisualizer:PaintFloorTiles");
+        HashSet<Vector2Int> dungeonFloor = dungeon.GetDungeonFloorPlan();
         PaintTiles(dungeonFloor, floorTilemap, floorTile);
     }
     public void Clear()
     {
+        Debug.Log("TilemapVisualizer:Clear");
         floorTilemap.ClearAllTiles();
         wallTilemap.ClearAllTiles();
     }
 
     private void PaintTiles(IEnumerable<Vector2Int> positions, Tilemap tilemap, TileBase tile)
     {
+        Debug.Log("TilemapVisualizer:PaintTiles");
         foreach(var position in positions)
         {
             PaintSingleTile(tilemap, tile, position);
@@ -34,12 +36,14 @@ public class TilemapVisualizer : MonoBehaviour
 
     private void PaintSingleTile(Tilemap tilemap, TileBase tile, Vector2Int position)
     {
+        Debug.Log("TilemapVisualizer:PaintSingleTile");
         var tilePosition = tilemap.WorldToCell((Vector3Int)position);
         tilemap.SetTile(tilePosition, tile);
     }
 
     internal void PaintSingleBasicWall(Vector2Int position, string binaryType)
     {
+        Debug.Log("TilemapVisualizer:PaintSingleBasicWall");
         int typeAsInt = Convert.ToInt32(binaryType, 2);
         TileBase tile = null;
         if(WallTypesHelper.wallHorizontalLeft.Contains(typeAsInt))
@@ -83,6 +87,7 @@ public class TilemapVisualizer : MonoBehaviour
 
     internal void PaintSingleCornerWall(Vector2Int position, string neighorBinaryType)
     {
+        Debug.Log("TilemapVisualizer:PaintSingleCornerWall");
         int typeAsInt = Convert.ToInt32(neighorBinaryType, 2);
         TileBase tile = null;
 

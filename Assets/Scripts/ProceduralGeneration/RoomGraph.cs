@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 public class RoomGraph 
 {
-    Dictionary<Vector2Int, List<Vector2Int>> graph = new();
+    readonly Dictionary<Vector2Int, List<Vector2Int>> graph = new();
 
-    public RoomGraph(HashSet<Vector2Int> roomFloor)
+    public RoomGraph(SyncHashSet<Vector2Int> roomFloor)
     {
         foreach(Vector2Int pos in roomFloor)
         {
@@ -29,7 +30,7 @@ public class RoomGraph
     /// <param name="startPos">Door position or starting tile position on path between rooms</param>
     /// <param name="occupiedNodes"></param>
     /// <returns></returns>
-    public Dictionary<Vector2Int, Vector2Int> RunBFS(Vector2Int startPos, HashSet<Vector2Int> occupiedNodes)
+    public Dictionary<Vector2Int, Vector2Int> RunBFS(Vector2Int startPos, SyncHashSet<Vector2Int> occupiedNodes)
     {
         Queue<Vector2Int> nodesToVisit = new();
         nodesToVisit.Enqueue(startPos);

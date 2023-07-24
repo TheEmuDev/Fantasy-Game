@@ -1,12 +1,9 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public static class ProceduralGenerationAlgorithms
 {
-   
     public static HashSet<Vector2Int> SimpleRandomWalk(Vector2Int startPosition, int walkLength)
     {
         HashSet<Vector2Int> path = new()
@@ -101,7 +98,8 @@ public static class ProceduralGenerationAlgorithms
     {
         var ySplit = Random.Range(1, room.size.y);
         BoundsInt room1 = new(room.min, new Vector3Int(room.size.x, ySplit, room.size.z));
-        BoundsInt room2 = new(new Vector3Int(room.min.x, room.min.y + ySplit, room.min.z), new Vector3Int(room.size.x, room.size.y - ySplit, room.size.z));
+        BoundsInt room2 = new(new Vector3Int(room.min.x, room.min.y + ySplit, room.min.z), 
+            new Vector3Int(room.size.x, room.size.y - ySplit, room.size.z));
         roomsQueue.Enqueue(room1);
         roomsQueue.Enqueue(room2);
     }

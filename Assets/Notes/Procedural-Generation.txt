@@ -1,0 +1,80 @@
+Procedural Generation techniques
+
+#########################################
+###       Simple Room Placement       ###
+#########################################
+
+1. Fill the map with walls
+2. Randomly pick a room location
+    - If its not already occupied, add the room
+3. Keep picking rooms
+4. Join the kept rooms with corridors
+
+
+#########################################
+###     Binary Space Partitioning     ###
+#########################################
+
+1. Divide room into two
+2. Divide area into two
+    - Repeat until piece is within your desired size
+3. Select piece as room
+    - Add border of 1 tile around room to prevent
+      rooms from joining together (unless you want that)
+
+
+#########################################
+###         Cellular Automata         ###
+#########################################
+
+1. make a random map
+2. Apply cell life rules to each tile
+3. Repeat.
+
+Rules:  
+    Count neighbors for each tile not on the edge
+    -   0    neighbors: become a wall
+    -   1-4  neighbors: become empty
+    -   5-8  neighbors: become a wall
+
+
+#########################################
+###         Drunkard's Walk           ###
+#########################################
+
+1. Perform a Simple Random Walk
+2. Repeat until enough of the map is open
+
+
+#########################################
+###   Diffusion Limited Aggregation   ###
+#########################################
+
+1. Start with target seed
+2. Randomly - or not - fire particles at it
+3. Dig out the last edge the particle hit
+(To fire a particle, select a random space in the map and direction)
+
+
+
+#########################################
+###         Voronoi Diagrams          ###
+#########################################
+
+1. Randomly - or deliberately - place seeds
+2. Each tile joins the closest seed
+3. Vary distance heuristics for different effects
+
+
+#########################################
+###        Perlin/Simplex Noise       ###
+#########################################
+
+--> use interenet (lol)
+
+
+
+#########################################
+###      Wave Function Collapse       ###
+#########################################
+

@@ -1,0 +1,59 @@
+https://github.com/thebracket/roguelike-celebration-2020
+
+
+Algorithm: Dijkstra Maps
+
+1. Start with 1 or more starting points.
+2. Rest of the map "sentinel" value - unreachable
+3. Set points adjacent to start to 1
+4. Set points adjacent to those 2.
+5. Repeat until whole map walked
+
+
+Removing Unreachable Areas
+
+1. Find Central Start
+2. Run Dijkstra
+3. Cull tiles without a valid distance
+    - also consider these locations for diggable areas
+
+
+Finding a starting point
+
+1. Find desired starting point
+2. Find closed open tile for actual start
+
+
+Finding an ending point
+
+1. Dijkstra to find farthest point
+    - bad idea for central start
+    - good idea to hide something
+
+
+The 'Hot Path'
+
+1. Pathfind from start to end
+    - A* is good option
+2. Dijkstra Map with the path as starting points
+3. tiles with value < N distance is 'hot path'
+
+
+Culling based on the hot path
+
+    - Hate branching?
+    
+      cull map regions outside of the hot path
+
+
+Hot path for rooms
+
+Can be used to know where to put important encounters
+                    - or - 
+can be used to know where to put 'bonus' content to reward exploration
+
+Can be used to know the ordering of the rooms 
+    - place NPCs intelligently
+    - place locked doors and put the key in
+      an area in the map that is reachable 
+

@@ -6,6 +6,7 @@ using UnityEngine.Events;
 
 public class RoomDataExtractor : MonoBehaviour
 {
+    /*
     private Dungeon dungeon;
 
     
@@ -23,17 +24,19 @@ public class RoomDataExtractor : MonoBehaviour
     {
         if (dungeon == null) return;
 
-        foreach(Room room in dungeon.Rooms)
+
+
+        foreach(Room room in dungeon.GetRooms())
         {
             // find corner, near wall, and inner tiles
             foreach (Vector2Int tilePosition in room.FloorTiles)
             {
                 // handle tiles which are on the dungeon path
-                if (dungeon.Path.Contains(tilePosition)) 
+                if (dungeon.GetPath().Contains(tilePosition)) 
                 {
                     foreach (Vector2Int direction in Direction2D.cardinalDirectionsList)
                     {
-                        if (room.FloorTiles.Contains(tilePosition + direction) && !dungeon.Path.Contains(tilePosition + direction))
+                        if (room.FloorTiles.Contains(tilePosition + direction) && !dungeon.GetPath().Contains(tilePosition + direction))
                         {
                             room.PathAdjacentTiles.Add(tilePosition + direction);
                         }
@@ -109,7 +112,7 @@ public class RoomDataExtractor : MonoBehaviour
     {
         if(dungeon == null || !showGizmo) return;
 
-        foreach (Room room in dungeon.Rooms)
+        foreach (Room room in dungeon.GetRooms())
         {
             // Draw inner tiles
             Gizmos.color = Color.yellow;
@@ -152,7 +155,7 @@ public class RoomDataExtractor : MonoBehaviour
     {
         foreach (Vector2Int floorPosition in collection)
         {
-            if (dungeon.Path.Contains(floorPosition)) continue;
+            if (dungeon.GetPath().Contains(floorPosition)) continue;
 
             Gizmos.DrawCube(floorPosition + Vector2.one * 0.5f, Vector2.one);
         }
@@ -165,4 +168,5 @@ public class RoomDataExtractor : MonoBehaviour
             Gizmos.DrawWireCube(floorPosition + (Vector2.one * 0.5f), Vector2.one);
         }
     }
+    */
 }

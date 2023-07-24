@@ -13,11 +13,12 @@ namespace FantasyRogueLite.Lobby
     {
         [SerializeField] private int minimumPlayers = 1;
         [SerializeField] private string menuScene = string.Empty;
+        [SerializeField] private string gameScene = string.Empty;
 
-        [Header("Room")]
+        [Header("Lobby Player Prefab")]
         [SerializeField] private NetworkLobbyPlayer roomPlayerPrefab = null;
 
-        [Header("Game")]
+        [Header("Game Player Prefab")]
         [SerializeField] private NetworkGamePlayer gamePlayerPrefab = null;
 
         public static event Action OnClientConnected;
@@ -73,7 +74,8 @@ namespace FantasyRogueLite.Lobby
         }
 
         public override void OnServerDisconnect(NetworkConnectionToClient conn)
-        { 
+        {
+            // Check if the connection has an associated player before removing from the list
             if (conn.identity != null)
             {
                 var player = conn.identity.GetComponent<NetworkLobbyPlayer>();
@@ -118,7 +120,7 @@ namespace FantasyRogueLite.Lobby
             {
                 if(!IsReadyToStart()) { return; }
 
-                ServerChangeScene("SampleScene");
+                ServerChangeScene(gameScene);
             }
         }
 
@@ -126,7 +128,7 @@ namespace FantasyRogueLite.Lobby
         {
             // From Menu to Game
             if (SceneManager.GetActiveScene().name == menuScene) {
-                if(newScene == "SampleScene")
+                if(newScene == gameScene)
                 {
                     for (int i = RoomPlayers.Count - 1; i >= 0; i--)
                     {

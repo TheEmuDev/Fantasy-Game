@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 016789b8ba61be643877b3ee89f12b77, type: 3}
+  m_Name: Test_BSP
+  m_EditorClassIdentifier: 
+  algorithm: 0
+  startPosition: {x: 0, y: 0}
+  dungeonWidth: 100
+  dungeonHeight: 100
+  minimumRoomPadding: 1
+  minimumRooms: 1
+  iterations: 10
+  walkLength: 10
+  walkType: 0
+  minimumRoomWidth: 15
+  minimumRoomHeight: 15
+  favoredSplitDirection: 0

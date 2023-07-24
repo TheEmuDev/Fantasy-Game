@@ -1,10 +1,11 @@
 using Mirror;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace FantasyRogueLite.Lobby { 
+namespace FantasyRogueLite.Lobby {
     public class NetworkGamePlayer : NetworkBehaviour
     {
         [SyncVar] private string displayName = "Loading...";
