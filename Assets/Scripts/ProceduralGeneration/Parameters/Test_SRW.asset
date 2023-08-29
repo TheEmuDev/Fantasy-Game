@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 016789b8ba61be643877b3ee89f12b77, type: 3}
-  m_Name: Island_SRW
+  m_Name: Test_SRW
   m_EditorClassIdentifier: 
   algorithm: 1
   startPosition: {x: 0, y: 0}
-  dungeonWidth: 60
-  dungeonHeight: 60
-  minimumRoomPadding: 1
-  minimumRooms: 1
+  dungeonWidth: 300
+  dungeonHeight: 300
+  roomMargin: 1
+  minimumRooms: 4
   iterations: 100
   walkLength: 30
   walkType: 1

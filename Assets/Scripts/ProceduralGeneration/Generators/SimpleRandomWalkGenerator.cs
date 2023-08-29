@@ -1,4 +1,4 @@
-using System;
+using Mirror;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -19,28 +19,35 @@ public class SimpleRandomWalkGenerator : IDungeonGenerator
 
     private List<Room> PerformRandomWalk(DungeonParameters parameters)
     {
-        Debug.Log("SRWGenerator:PerformRandomWalk");
-        var startPoint = parameters.startPosition;
-        Vector2Int roomCenter;
-        
-        List<Room> rooms = new();
-        int roomCount = 0;
+        /*
+         * #1 randomly place center points equal to the minimum room count inside dungeon RectInt boundary
+         *      - points must be 2 * run length + margin away from all other points the edges of the RectInt
+         * 
+         * #2 run SRW at each center point 
+         *
+         */
 
-        do
+        Debug.Log("SRWGenerator:PerformRandomWalk");
+
+        List<Vector2Int> roomSeeds = GenerateRoomSeeds(parameters);
+        List<Room> rooms = new();
+        
+        for(int i = 0; i < roomSeeds.Count; i++)
         {
             HashSet<Vector2Int> walkPath = new()
             {
-                startPoint
+                roomSeeds[i]
             };
-            var previousPosition = startPoint;
+
+            var previousPosition = roomSeeds[i];
             int minX = previousPosition.x;
             int minY = previousPosition.y;
             int maxX = previousPosition.x;
             int maxY = previousPosition.y;
 
-            for (int i = 0; i < parameters.iterations; i++)
+            for (int currentIteration = 0; currentIteration < parameters.iterations; currentIteration++)
             {
-                for (int j = 0; j < parameters.walkLength; j++)
+                for (int step = 0; step < parameters.walkLength; step++)
                 {
                     var newPosition = previousPosition + Direction2D.GetRandomCardinalDirection();
                     walkPath.Add(newPosition);
@@ -59,27 +66,75 @@ public class SimpleRandomWalkGenerator : IDungeonGenerator
 
                 if (parameters.walkType == RandomWalkStartType.StartPoint)
                 {
-                    previousPosition = parameters.startPosition;
+                    previousPosition = roomSeeds[i];
                 }
             }
 
-            roomCenter = new Vector2Int((minX + maxX) / 2, (minY + maxY) / 2);
-            Room newRoom = new(roomCenter, walkPath);
+            var roomCenter = new Vector2Int((minX + maxX) / 2, (minY + maxY) / 2);
 
-            if (ValidateRoom(newRoom, rooms, parameters.minimumRoomPadding))
+            // Set room center as calculated midpoint if it is contained within the walk path
+            // Otherwise set it to the seed position
+            Room newRoom = new(walkPath.Contains(roomCenter) ? roomCenter : roomSeeds[i], walkPath);
+
+            if (ValidateRoom(newRoom, rooms, parameters.roomMargin))
             {
                 rooms.Add(newRoom);
                 Debug.Log("number of rooms: " + rooms.Count);
-                roomCount++;
-                // Determine next SRW start point
-                if (parameters.minimumRooms > 1)
-                {
-                    startPoint = FindNextStartPoint(parameters, rooms, minX, minY, maxX, maxY);
-                }
-            }
-        } while (roomCount < parameters.minimumRooms);
-        
+            } 
+        }
+
         return rooms;
+    }
+
+    private List<Vector2Int> GenerateRoomSeeds(DungeonParameters parameters)
+    {
+        // Generate the list of all possible seed positions based on packing circles hexagonally into a rectangle
+        // random walk with infinite iterations begins resembling circle-y thing, so this strategy should work
+        // randomly select dungeon room minimum number of seeds and return that list
+
+        var maxRoomLength = 2 * parameters.walkLength + 1;
+        bool marginIsOdd = parameters.roomMargin % 2 != 0;
+
+        List<Vector2Int> allPossibleSeeds = new();
+        List<Vector2Int> chosenSeeds = new();
+             
+        var rows = (parameters.dungeonHeight % (maxRoomLength + parameters.roomMargin) < maxRoomLength) 
+            ? parameters.dungeonHeight / (maxRoomLength + parameters.roomMargin)
+            : (parameters.dungeonHeight / (maxRoomLength + parameters.roomMargin)) + 1;
+
+        var cols = (parameters.dungeonWidth % (maxRoomLength + parameters.roomMargin) < maxRoomLength)
+            ? parameters.dungeonWidth / (maxRoomLength + parameters.roomMargin)
+            : (parameters.dungeonWidth / (maxRoomLength + parameters.roomMargin)) + 1;
+
+        for(int i = 0; i < rows; i++)
+        {
+            for(int j = 0; j < cols; j++)
+            {
+                Vector2Int seedPosition = parameters.startPosition + new Vector2Int(
+                    ((i + 1) * parameters.walkLength) + parameters.roomMargin,
+                    ((j + 1) * parameters.walkLength) + parameters.roomMargin);
+
+                Debug.Log("Seed Position - " + seedPosition.ToString());
+                allPossibleSeeds.Add(seedPosition);
+            }
+        }
+
+        if(marginIsOdd)
+        {
+            // TODO: Add the seed positions which can fit in the spaces between the existing seeds
+        }
+
+        int roomsNeeded = parameters.minimumRooms < allPossibleSeeds.Count ? parameters.minimumRooms : allPossibleSeeds.Count;
+
+        for(int count = 0; count < roomsNeeded; count++)
+        {
+            var index = Random.Range(0, allPossibleSeeds.Count);
+            var selectedSeed = allPossibleSeeds[index];
+            allPossibleSeeds.RemoveAt(index);
+            chosenSeeds.Add(selectedSeed);
+        }
+
+        return chosenSeeds;
     }
 
     // This function connects all rooms by their center points
@@ -90,7 +145,7 @@ public class SimpleRandomWalkGenerator : IDungeonGenerator
         HashSet<int> connectedRooms = new();
 
         if(dungeon.Rooms.Count < 2) { 
-            corridors.Add(dungeon.Rooms.First().RoomCenter);
+            corridors.Add(dungeon.Rooms.First().RoomCenter); 
             return corridors;
         }
 
@@ -169,28 +224,6 @@ public class SimpleRandomWalkGenerator : IDungeonGenerator
         return corridor;
     }
 
-    private Vector2Int FindNextStartPoint(DungeonParameters parameters, List<Room> rooms, int minX, int minY, int maxX, int maxY)
-    {
-        Debug.Log("SRWGenerator:FindNextStartPoint");
-        Vector2Int startPoint = new();
-        List<Vector2Int> directionsList = Direction2D.GetRandomCardinalDirectionList();
-
-        for(int i = 0; i < directionsList.Count; i++)
-        {
-            var candidate = directionsList[i];
-            candidate.Scale(new Vector2Int(parameters.walkLength + parameters.minimumRoomPadding, parameters.walkLength + parameters.minimumRoomPadding));
-            candidate += new Vector2Int((minX + maxX) / 2, (minY + maxY) / 2);
-
-            if (ValidateStartingPoint(candidate, rooms))
-            {
-                startPoint = candidate;
-                break;
-            }    
-        }
-
-        return startPoint;
-    }
-
     private bool ValidateRoom(Room newRoom, List<Room> Rooms, int padding)
     {
         Debug.Log("SRWGenerator:ValidateRoom");
@@ -204,20 +237,6 @@ public class SimpleRandomWalkGenerator : IDungeonGenerator
         }
 
         Debug.Log("SRWGenerator:ValidateRoom - True");
-        return true;
-    }
-
-    private bool ValidateStartingPoint(Vector2Int candidate, List<Room> rooms)
-    {
-        Debug.Log("SRWGenerator:ValidateStartingPoint");
-        foreach(Room room in rooms)
-        {
-            if (room.FloorPositions.Contains(candidate))
-            {
-                return false;
-            }
-        }
-
         return true;
     }
 }

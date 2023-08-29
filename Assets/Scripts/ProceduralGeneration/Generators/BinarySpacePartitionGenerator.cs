@@ -7,6 +7,7 @@ public class BinarySpacePartitionGenerator : IDungeonGenerator
 {
     public Dungeon GenerateDungeon(DungeonParameters parameters)
     {
+        Debug.Log("BSPGenerator:GenerateDungeon");
         if (parameters.dungeonWidth <= 0 || parameters.dungeonHeight <= 0)
         {
             throw new ArgumentException("Dungeon width and height must be positive");
@@ -22,6 +23,7 @@ public class BinarySpacePartitionGenerator : IDungeonGenerator
 
     private List<Room> BinarySpacePartition(DungeonParameters parameters)
     {
+        Debug.Log("BSPGenerator:BinarySpacePartition");
         Queue<RectInt> roomsQueue = new();
         List<RectInt> roomsList = new();
 
@@ -32,107 +34,73 @@ public class BinarySpacePartitionGenerator : IDungeonGenerator
 
         while (roomsQueue.Count > 0)
         {
+            Debug.Log("Number of rooms in queue: " + roomsQueue.Count);
             var roomCandidate = roomsQueue.Dequeue();
+            Debug.Log("Current room: " + roomCandidate.ToString());
 
             if (parameters.favoredSplitDirection == Direction2D.SplitDirections.Random)
             {
                 splitDirectionCoin = Mathf.RoundToInt(Random.value);
             }
 
-            if (IsRoomCandidateValid(roomCandidate, parameters))
+            bool splitHorizontally = splitDirectionCoin == 0 || parameters.favoredSplitDirection == Direction2D.SplitDirections.Horizontal;
+
+            if (CanBeSplit(roomCandidate, parameters, splitHorizontally))
             {
-                HandleSplitDirection(roomCandidate, parameters, roomsQueue, roomsList, splitDirectionCoin);
+                Debug.Log("Room Candidate can be split with first check - isHorizontal: " + splitHorizontally);
+                SplitRoom(parameters, roomsQueue, roomCandidate, splitHorizontally);
+            }
+            else if (CanBeSplit(roomCandidate, parameters, !splitHorizontally))
+            {
+                Debug.Log("Room Candidate can be split with second check - isHorizontal: " + !splitHorizontally);
+                SplitRoom(parameters, roomsQueue, roomCandidate, !splitHorizontally);
+            } 
+            else
+            {
+                Debug.Log("Room Candidate cannot be split! Adding it to the list");
+                roomsList.Add(roomCandidate);
             }
         }
 
         return ToRooms(roomsList, parameters);
     }
 
-    private bool IsRoomCandidateValid(RectInt roomCandidate, DungeonParameters parameters)
+    private bool CanBeSplit(RectInt roomCandidate, DungeonParameters parameters, bool splitHorizontally) => splitHorizontally
+            ? roomCandidate.size.y >= 2 * (parameters.minimumRoomHeight + parameters.roomMargin)
+            : roomCandidate.size.x >= 2 * (parameters.minimumRoomWidth + parameters.roomMargin);
+
+
+    private void SplitRoom(DungeonParameters parameters, Queue<RectInt> roomsQueue, RectInt candidate, bool splitHorizontally)
     {
-        return roomCandidate.size.y >= parameters.minimumRoomHeight && roomCandidate.size.x >= parameters.minimumRoomWidth;
-    }
+        Debug.Log("BSPGenerator:SplitRoom");
 
-    private void HandleSplitDirection(RectInt roomCandidate, DungeonParameters parameters, Queue<RectInt> roomsQueue, List<RectInt> roomsList, int splitDirectionCoin)
-    {
-        bool isHorizontalSplitFavored = splitDirectionCoin == 0 || parameters.favoredSplitDirection == Direction2D.SplitDirections.Horizontal;
-        bool canSplitHorizontally = roomCandidate.size.y >= parameters.minimumRoomHeight * 2;
-        bool canSplitVertically = roomCandidate.size.x >= parameters.minimumRoomWidth * 2;
+        var splitMin = splitHorizontally 
+            ? parameters.minimumRoomHeight + parameters.roomMargin 
+            : parameters.minimumRoomWidth + parameters.roomMargin;
 
-        if (isHorizontalSplitFavored)
-        {
-            if (canSplitHorizontally)
-            {
-                SplitRoomHorizontally(parameters.minimumRoomHeight, roomsQueue, roomCandidate);
-            }
-            else if (canSplitVertically)
-            {
-                SplitRoomVertically(parameters.minimumRoomWidth, roomsQueue, roomCandidate);
-            }
-            else
-            {
-                roomsList.Add(roomCandidate);
-            }
-        }
-        else // Favor Vertical
-        {
-            if (canSplitVertically)
-            {
-                SplitRoomVertically(parameters.minimumRoomWidth, roomsQueue, roomCandidate);
-            }
-            else if (canSplitHorizontally)
-            {
-                SplitRoomHorizontally(parameters.minimumRoomHeight, roomsQueue, roomCandidate);
-            }
-            else
-            {
-                roomsList.Add(roomCandidate);
-            }
-        }
-    }
+        var splitMax = splitHorizontally
+            ? candidate.size.y - parameters.minimumRoomHeight - parameters.roomMargin
+            : candidate.size.x - parameters.minimumRoomWidth - parameters.roomMargin;
 
-    private List<Room> ToRooms(List<RectInt> roomsList, DungeonParameters parameters)
-    {
-        List<Room> rooms = new();
-        HashSet<Vector2Int> floor = new();
-        foreach(RectInt roomSpace in roomsList)
-        {
-            for(int col = parameters.minimumRoomPadding; col < roomSpace.size.x - parameters.minimumRoomPadding; col++)
-            {
-                for (int row = parameters.minimumRoomPadding; row < roomSpace.size.y - parameters.minimumRoomPadding; row++)
-                {
-                    Vector2Int position = roomSpace.min + new Vector2Int(row, col);
-                    floor.Add(position);
-                }
-            }
-            rooms.Add(new Room(new Vector2Int((int)roomSpace.center.x, (int)roomSpace.center.y), floor));
-            floor.Clear();
-        }
+        var split = Random.Range(splitMin, splitMax);
+  
+        RectInt room1 = splitHorizontally
+            ? new(candidate.min.x, candidate.min.y, candidate.size.x, split - parameters.roomMargin)
+            : new(candidate.min.x, candidate.min.y, split - parameters.roomMargin, candidate.size.y);
+        
+        RectInt room2 = splitHorizontally
+            ? new(candidate.min.x, candidate.min.y + split + parameters.roomMargin, candidate.size.x, candidate.size.y - split - parameters.roomMargin)
+            : new(candidate.min.x + split + parameters.roomMargin, candidate.min.y, candidate.size.x - split - parameters.roomMargin, candidate.size.y);
 
-        return rooms;
-    }
-
-    private void SplitRoomVertically(int minimumRoomWidth, Queue<RectInt> roomsQueue, RectInt roomCandidate)
-    {
-        var xSplit = Random.Range(minimumRoomWidth, roomCandidate.size.x - minimumRoomWidth);
-        RectInt room1 = new(roomCandidate.min, new Vector2Int(xSplit, roomCandidate.size.y));
-        RectInt room2 = new(new Vector2Int(roomCandidate.min.x + xSplit, roomCandidate.min.y), new Vector2Int(roomCandidate.size.x - xSplit, roomCandidate.size.y));
-        roomsQueue.Enqueue(room1);
-        roomsQueue.Enqueue(room2);
-    }
-
-    private void SplitRoomHorizontally(int minimumRoomHeight, Queue<RectInt> roomsQueue, RectInt roomCandidate)
-    {
-        var ySplit = Random.Range(minimumRoomHeight, roomCandidate.size.y - minimumRoomHeight);
-        RectInt room1 = new(roomCandidate.min, new Vector2Int(roomCandidate.size.x, ySplit));
-        RectInt room2 = new(new Vector2Int(roomCandidate.min.x, ySplit), new Vector2Int(roomCandidate.size.x, roomCandidate.size.y - ySplit));
         roomsQueue.Enqueue(room1);
         roomsQueue.Enqueue(room2);
     }
 
     private HashSet<Vector2Int> ConnectRooms(Dungeon dungeon)
     {
+        Debug.Log("BSPGenerator:ConnectRooms");
         HashSet<Vector2Int> corridors = new();
+        
         HashSet<int> connectedRooms = new();
 
         var roomIndex = Random.Range(0, dungeon.Rooms.Count);
@@ -151,6 +119,7 @@ public class BinarySpacePartitionGenerator : IDungeonGenerator
 
     private int FindClosestRoom(Dungeon dungeon, int roomIndex, HashSet<int> connectedRooms)
     {
+        Debug.Log("BSPGenerator:FindClosestRoom");
         int closest = -1;
         float distance = float.MaxValue;
         for(int i = 0; i < dungeon.Rooms.Count; i++)
@@ -169,8 +138,22 @@ public class BinarySpacePartitionGenerator : IDungeonGenerator
         return closest;
     }
 
+    private List<Room> ToRooms(List<RectInt> roomsList, DungeonParameters parameters)
+    {
+        Debug.Log("BSPGenerator:ToRooms");
+        List<Room> rooms = new();
+
+        foreach (RectInt roomSpace in roomsList)
+        {
+            rooms.Add(new Room(roomSpace));
+        }
+
+        return rooms;
+    }
+
     private HashSet<Vector2Int> CreateCorridor(int currentRoomIndex, int destinationRoomIndex, Dungeon dungeon)
     {
+        Debug.Log("BSPGenerator:CreateCorridor");
         HashSet<Vector2Int> corridor = new();
         var position = dungeon.Rooms[currentRoomIndex].RoomCenter;
         var destination = dungeon.Rooms[destinationRoomIndex].RoomCenter;

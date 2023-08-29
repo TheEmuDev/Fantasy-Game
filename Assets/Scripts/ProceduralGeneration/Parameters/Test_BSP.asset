@@ -16,11 +16,11 @@ MonoBehaviour:
   startPosition: {x: 0, y: 0}
   dungeonWidth: 100
   dungeonHeight: 100
-  minimumRoomPadding: 1
-  minimumRooms: 1
+  roomMargin: 1
+  minimumRooms: 8
   iterations: 10
   walkLength: 10
   walkType: 0
   minimumRoomWidth: 15
   minimumRoomHeight: 15
-  favoredSplitDirection: 0
+  favoredSplitDirection: 2

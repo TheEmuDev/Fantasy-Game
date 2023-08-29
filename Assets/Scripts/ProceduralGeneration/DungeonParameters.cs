@@ -19,19 +19,19 @@ public class DungeonParameters : ScriptableObject
     public DungeonGenerationAlgorithm algorithm;
 
     [Tooltip("Starting point for dungeon generation")]
-    public Vector2Int startPosition;
+    public Vector2Int startPosition = new(0, 0);
 
-    [Tooltip("Width of the dungeon to be generated")]
+    [Tooltip("Maximum Width of the dungeon to be generated")]
     [Min(15)]
     public int dungeonWidth;
 
-    [Tooltip("Height of the dungeon to be generated")]
+    [Tooltip("Maximum Height of the dungeon to be generated")]
     [Min(15)]
     public int dungeonHeight;
 
-    [Tooltip("Minimum padding between rooms")]
+    [Tooltip("Minimum space between rooms")]
     [Min(1)]
-    public int minimumRoomPadding = 1;
+    public int roomMargin = 1;
 
     [Tooltip("Minimum number of rooms to generate")]
     [Min(1)]

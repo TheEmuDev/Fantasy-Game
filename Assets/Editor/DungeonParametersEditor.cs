@@ -16,7 +16,7 @@ public class DungeonParametersEditor : Editor
         EditorGUILayout.PropertyField(serializedObject.FindProperty("dungeonWidth"));
         EditorGUILayout.PropertyField(serializedObject.FindProperty("dungeonHeight"));
         
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("minimumRoomPadding"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("roomMargin"));
         EditorGUILayout.PropertyField(serializedObject.FindProperty("minimumRooms"));
 
         EditorGUILayout.Space();

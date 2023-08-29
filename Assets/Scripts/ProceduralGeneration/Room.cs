@@ -16,6 +16,23 @@ public class Room
         FloorPositions = new();
     }
 
+    public Room(RectInt roomBoundary)
+    {
+        RoomCenter = new((int)roomBoundary.center.x, (int)roomBoundary.center.y);
+        HashSet<Vector2Int> room = new();
+        for(int x = roomBoundary.min.x; x < roomBoundary.max.x; x++)
+        {
+            for(int y = roomBoundary.min.y; y < roomBoundary.max.y; y++)
+            {
+                room.Add(new Vector2Int(x, y));
+            }
+        }
+
+        FloorPositions = room;
+        Debug.Log("RectInt room - " + roomBoundary.ToString());
+        PrintRoom();
+    }
+
     public Room(Vector2Int roomCenter, HashSet<Vector2Int> floorPositions)
     {
         RoomCenter = roomCenter;

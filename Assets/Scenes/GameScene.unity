@@ -188,8 +188,9 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  Parameters: {fileID: 11400000, guid: 069968d6da413e546835268e6a88f324, type: 2}
+  Parameters: {fileID: 11400000, guid: ddca36d3447ff41448fd2ed1869c23a7, type: 2}
   DungeonVisualizer: {fileID: 1763834754}
+  DebugLoggingEnabled: 0
 --- !u!1 &360682080
 GameObject:
   m_ObjectHideFlags: 0
@@ -1792,6 +1793,7 @@ MonoBehaviour:
   wallTeeDown: {fileID: 11400000, guid: abe724bc5ab3cd3499c27e2005e35e67, type: 2}
   wallTeeLeft: {fileID: 11400000, guid: d3c19c8f64916ca4a9a6493091fbfac8, type: 2}
   wallCross: {fileID: 11400000, guid: 64b1f02d5b92e704abf305d451153842, type: 2}
+  DebugLoggingEnabled: 0
 --- !u!4 &1763834755
 Transform:
   m_ObjectHideFlags: 0

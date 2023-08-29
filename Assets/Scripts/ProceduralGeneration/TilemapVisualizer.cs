@@ -12,22 +12,28 @@ public class TilemapVisualizer : MonoBehaviour
     private TileBase floorTile, wallHorizontalSingle, wallHorizontalLeft, wallHorizontalMiddle, wallHorizontalRight, wallVerticalTop, wallVerticalMiddle, wallVerticalBottom,
         wallCornerTopLeft, wallCornerTopRight, wallCornerBottomRight, wallCornerBottomLeft, wallTeeUp, wallTeeRight,wallTeeDown, wallTeeLeft, wallCross;
 
+    [SerializeField]
+    bool DebugLoggingEnabled;
+
     public void PaintFloorTiles(Dungeon dungeon)
     {
-        Debug.Log("TilemapVisualizer:PaintFloorTiles");
+        if(DebugLoggingEnabled)
+            Debug.Log("TilemapVisualizer:PaintFloorTiles");
         HashSet<Vector2Int> dungeonFloor = dungeon.GetDungeonFloorPlan();
         PaintTiles(dungeonFloor, floorTilemap, floorTile);
     }
     public void Clear()
     {
-        Debug.Log("TilemapVisualizer:Clear");
+        if (DebugLoggingEnabled)
+            Debug.Log("TilemapVisualizer:Clear");
         floorTilemap.ClearAllTiles();
         wallTilemap.ClearAllTiles();
     }
 
     private void PaintTiles(IEnumerable<Vector2Int> positions, Tilemap tilemap, TileBase tile)
     {
-        Debug.Log("TilemapVisualizer:PaintTiles");
+        if (DebugLoggingEnabled)
+            Debug.Log("TilemapVisualizer:PaintTiles");
         foreach(var position in positions)
         {
             PaintSingleTile(tilemap, tile, position);
@@ -36,14 +42,16 @@ public class TilemapVisualizer : MonoBehaviour
 
     private void PaintSingleTile(Tilemap tilemap, TileBase tile, Vector2Int position)
     {
-        Debug.Log("TilemapVisualizer:PaintSingleTile");
+        if (DebugLoggingEnabled)
+            Debug.Log("TilemapVisualizer:PaintSingleTile");
         var tilePosition = tilemap.WorldToCell((Vector3Int)position);
         tilemap.SetTile(tilePosition, tile);
     }
 
     internal void PaintSingleBasicWall(Vector2Int position, string binaryType)
     {
-        Debug.Log("TilemapVisualizer:PaintSingleBasicWall");
+        if (DebugLoggingEnabled)
+            Debug.Log("TilemapVisualizer:PaintSingleBasicWall");
         int typeAsInt = Convert.ToInt32(binaryType, 2);
         TileBase tile = null;
         if(WallTypesHelper.wallHorizontalLeft.Contains(typeAsInt))
@@ -87,7 +95,8 @@ public class TilemapVisualizer : MonoBehaviour
 
     internal void PaintSingleCornerWall(Vector2Int position, string neighorBinaryType)
     {
-        Debug.Log("TilemapVisualizer:PaintSingleCornerWall");
+        if (DebugLoggingEnabled)
+            Debug.Log("TilemapVisualizer:PaintSingleCornerWall");
         int typeAsInt = Convert.ToInt32(neighorBinaryType, 2);
         TileBase tile = null;
 
